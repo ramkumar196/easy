@@ -32,6 +32,16 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Category</label>
+                                        <div class="col-md-6 col-xs-12">                                                                                            
+                                            <select name="category" ng-model="category" class="form-control ">
+                                                <option value="@{{ m.id }}" ng-selected= "m.id == category" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
+                                            </select>
+                                        <span class="help text-danger" ng-if="errors.category[0]!= ''">@{{errors.category[0]}}</span> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Variant Type</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
                                             <select name="variant_type" ng-model="variant_type" class="form-control ">
@@ -42,14 +52,18 @@
                                         </div>
                                     </div>
                                     <input type="hidden" id="variants_id" value="{{$variants_id}}"/>
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Category</label>
-                                        <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select name="category" ng-model="category" class="form-control ">
-                                                <option value="@{{ m.id }}" ng-selected= "m.id == category" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
-                                            </select>
-                                        <span class="help text-danger" ng-if="errors.category[0]!= ''">@{{errors.category[0]}}</span> 
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Variants Values</label>
+                                        <div class="col-md-6 col-xs-12">                
+                                        <tags-input class="bootstrap" ng-model="variant_value" 
+                                        placeholder="Add value" 
+                                        min-length="1"
+                                        max-length="10"
+                                        >
+                                        <!-- allowed-tags-pattern="^[0-9]+$" -->
+                                        </tags-input>
+                                            <span class="help-block" ng-if="errors.variants_value[0]!= ''">@{{errors.variants_value[0]}}</span>
                                         </div>
                                     </div>
 

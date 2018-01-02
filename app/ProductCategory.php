@@ -26,10 +26,9 @@ class ProductCategory extends Model
      protected $hidden = [
     ];
 
-
-    public function products()
-    {
-        return $this->hasMany('App\Product');
-    }
+     public function variants()
+     {
+         return $this->hasMany('App\Variants');
+     }
 
 }

@@ -14,6 +14,8 @@
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/theme-default.css'); !!}"/>
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-material.min.css'); !!}"/>
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-text.css'); !!}"/>
+  <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-tags.css'); !!}"/>
+  <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-multiselect.css'); !!}"/>
 
   <!-- EOF CSS INCLUDE -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
@@ -23,6 +25,7 @@
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-summernote.js'); !!}"></script>
 
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-sanitize.js'); !!}"></script>
+  <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-tags.js'); !!}"></script>
 
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-rangy.js'); !!}"></script>
 
@@ -30,6 +33,8 @@
 
 
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-text.js'); !!}"></script>
+
+  <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-multiselect.js'); !!}"></script>
 
 
 

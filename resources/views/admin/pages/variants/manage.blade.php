@@ -44,8 +44,9 @@
                                                     <th width="50">id</th>
                                                     <th>Variants Name</th>
                                                     <th>Variants Type</th>
-                                                    <th width="100">status</th>
-                                                    <th width="100">actions</th>
+                                                    <th>Variants Value</th>
+                                                    <th width="100">Status</th>
+                                                    <th width="100">Actions</th>
                                                 </tr >
                                             </thead>
                                             <tbody>  
@@ -53,6 +54,8 @@
                                                 <tr id="trow_1" dir-paginate="(k,m) in filtered=(main_category_list|itemsPerPage:5|filter:search)">
                                                 <td class="text-center">@{{k+1}}</td>
                                                 <td>@{{m.variant_name}}</td>   
+                                                <td>@{{m.variant_type}}</td>   
+                                                <td>@{{m.variant_value}}</td>   
                                                 <td>
                                                     <span ng-if="m.status == 'A'"
                                                    class="label label-success label-form">Active</span>

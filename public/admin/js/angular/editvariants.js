@@ -33,10 +33,14 @@ function EditVariantsController ($scope, $http, $log, $q,category_services,commo
                       alert('Data not found');
                       return;
                     }
-                    let variants_details = res.data; 
+
+                    let variants_details = res.data
+
+                    var var_val = commonServices.TagsConvertObjArray(variants_details[0].variant_value);
                     $scope.category = variants_details[0].category;
                     $scope.variant_name = variants_details[0].variant_name;
                     $scope.variant_type = variants_details[0].variant_type;                                      
+                    $scope.variant_value = var_val;                                      
         });
                 
         
@@ -76,11 +80,15 @@ function EditVariantsController ($scope, $http, $log, $q,category_services,commo
     
             let attributes = {
                     };
+
+            var var_val = commonServices.TagsConvertArrayObj($scope.variant_value);
+
     
             let product = { 
 			variant_name: $scope.variant_name,
 			variant_type:$scope.variant_type,
 			category : $scope.category,
+            variant_value:var_val,
 			status:'A'
                 //attributes: JSON.stringify(attributes)
             };

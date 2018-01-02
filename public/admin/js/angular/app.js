@@ -1,4 +1,4 @@
-var app = angular.module('easyadminapp', ['angularUtils.directives.dirPagination','ngAlertify','textAngular'])
+var app = angular.module('easyadminapp', ['angularUtils.directives.dirPagination','ngAlertify','textAngular','ngTagsInput','isteven-multi-select'])
 /*["ngAlertify"]*/
 app.directive('loading', ['$http', function ($http) {
     return {
@@ -90,7 +90,21 @@ app.service('commonServices', function ($http,$q) {
               return response;
               deferred.reject(response);
           });
-      }
+      },
+      this.TagsConvertObjArray=function(data) {
+              var var_val = data.split(',');
+              variant_value=[];
+              for (var i = 0; i < var_val.length; i++) {
+                variant_value.push({'text':var_val[i]});
+              }
+              return variant_value;
+            },
+      this.TagsConvertArrayObj=function(data) {
+              var var_val = $.map(data, function(value, index) {
+              return [value.text];
+              });
+              return  var_val.join(',');
+           }
 
 });
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use View;
+use App\Http\Resources\ProductCategories;
+
 
 class ProductCategoryController extends Controller
 {
@@ -18,18 +20,22 @@ class ProductCategoryController extends Controller
         //
         if ($request->has('category_id')) {      
             $category_id = $request->input('category_id');
-            return  ProductCategory::where('main_category', $category_id)->get();
+            $category_list = ProductCategory::where('main_category', $category_id)->get();
        }
        if ($request->has('id')) {      
         $id = $request->input('id');
-        return  ProductCategory::where('id', $id)->get();
+        $category_list = ProductCategory::where('id', $id)->get();
         }
         if ($request->has('exp_id')) {      
             $id = $request->input('exp_id');
-            return  ProductCategory::where('id', '!=', $id)->get();
+            $category_list = ProductCategory::where('id', '!=', $id)->get();
+        }
+        else
+        {
+            $category_list = ProductCategory::all();
         }
 
-        return ProductCategory::all();
+        return ProductCategories::collection($category_list);
         
     }
 
@@ -130,5 +136,38 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCatergory $productCatergory)
     {
         //
+    }
+
+     public function categorylist(Request $request)
+    {
+        $categories=ProductCategory::where('main_category',0)->get();//united
+        
+        $categories=$this->addRelation($categories);
+        
+        return $categories;
+
+    }
+
+    protected function selectChild($id)
+    {
+        $categories=ProductCategory::where('main_category',$id)->get(); //rooney
+
+        $categories=$this->addRelation($categories);
+
+        return $categories;
+
+    }
+
+    protected function addRelation($categories){
+
+        $categories->map(function ($item, $key) {
+            
+            $sub=$this->selectChild($item->id); 
+            
+            return $item=array_add($item,'subCategory',$sub);
+
+        });
+
+        return $categories;
     }
 }

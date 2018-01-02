@@ -58,8 +58,8 @@
         <script type="text/javascript" src="{!! asset('admin/js/plugins/bootstrap/bootstrap-datepicker.js'); !!}"></script>                
         <script type="text/javascript" src="{!! asset('admin/js/plugins/bootstrap/bootstrap-file-input.js'); !!}"></script>
         <script type="text/javascript" src="{!! asset('admin/js/plugins/bootstrap/bootstrap-select.js'); !!}"></script>
-        <script type="text/javascript" src="{!! asset('admin/js/plugins/tagsinput/jquery.tagsinput.min.js'); !!}"></script>
-        <script type="text/javascript" src="{!! asset('admin/js/plugins/fileinput/fileinput.min.js'); !!}"></script>  
+        <!-- <script type="text/javascript" src="{!! asset('admin/js/plugins/tagsinput/jquery.tagsinput.min.js'); !!}"></script>
+         --><script type="text/javascript" src="{!! asset('admin/js/plugins/fileinput/fileinput.min.js'); !!}"></script>  
         <script type="text/javascript" src="{!! asset('admin/js/plugins/datatables/jquery.dataTables.min.js'); !!}"></script>  
         <script type="text/javascript" src="{!! asset('admin/js/plugins/summernote/summernote.js'); !!}"></script>  
 

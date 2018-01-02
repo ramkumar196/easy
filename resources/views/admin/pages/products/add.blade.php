@@ -45,6 +45,22 @@
                                         <span class="help text-danger" ng-if="errors.main_category[0]!= ''">@{{errors.category[0]}}</span> 
                                         </div>
                                     </div>
+                                    @{{m.variants}}
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">Attributes</label>
+                                        <div
+    isteven-multi-select
+    input-model="outputBrowsers"
+    output-model="products.variants"
+    button-label="icon name"
+    item-label="icon name maker"
+    tick-property="ticked"
+>
+</div>
+                                    </div>
+
+
 
                                     <input type="hidden" name="p_status" ng-model="product.p_status" value="A" />
                                     <input type="hidden" name="image" ng-model="product.image" value="" />

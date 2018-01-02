@@ -16,7 +16,7 @@ class Variants extends Model
      * @var array
      */
      protected $fillable = [
-        'variant_name', 'variant_type','category','status'
+        'variant_name', 'variant_type','product_category_id','status','variant_value'
     ];
         /**
      * The attributes that should be hidden for arrays.
@@ -25,6 +25,12 @@ class Variants extends Model
      */
      protected $hidden = [
     ];
+
+
+    public function category()
+    {
+        return $this->belongsTo('App\ProductCategory');
+    }
 
 
 }

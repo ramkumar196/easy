@@ -49,6 +49,7 @@ class VariantsController extends Controller
             'variant_name' => 'required|unique:product_categories,category_name',
             "variant_type" => 'required',
             "category"=>'required',
+            "variant_value"=>'required'
         ]); 
 
         Variants::create($request->all());
@@ -99,6 +100,8 @@ class VariantsController extends Controller
             'variant_name' => 'required|unique:product_categories,category_name',
             "variant_type" => 'required',
             "category"=>'required',
+            "variant_value"=>'required'
+
         ]); 
         $variants = Variants::findOrFail($id);
         $variants->update($request->all());

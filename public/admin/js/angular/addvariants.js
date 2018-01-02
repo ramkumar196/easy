@@ -1,4 +1,4 @@
-function AddVariantsController ($scope, $http, $log, $q,category_services,commonServices,$window,alertify) {
+function AddVariantsController ($scope, $http, $log, $q,category_services,commonServices,$window,alertify,CommonFunction) {
 
 	$scope.errors='';
     $scope.category='';
@@ -39,20 +39,28 @@ function AddVariantsController ($scope, $http, $log, $q,category_services,common
 		let attributes = {
 				};
 
+		var var_val = commonServices.TagsConvertArrayObj($scope.variant_value);
+
 		let data = {
 			variant_name: $scope.variant_name,
 			variant_type:$scope.variant_type,
 			category : $scope.category,
+			variant_value : var_val,
 			status:'A'
 			//attributes: JSON.stringify(attributes)
-        };			
+        };	
+
+        console.log('input data',data);		
 		
 			create(data).then(function () {
-				//return retrieveWorkers();
-				
-			}).then(function (data) {
-				alertify.alert('Variant Added Successfully');
-				window.location.href = '/category/manage';
+				alertify.alert("Variant added successfully", function () {
+				window.location.href = '/variants/manage';
+			});			
+		 }).then(function (data) {
+			alertify.alert("Variant added successfully", function () {
+				// user clicked "ok"
+				window.location.href = '/variants/manage';
+			});
 			}).catch(function (error) {
 				console.log(error.data.errors);
 				$scope.errors=error.data.errors;            

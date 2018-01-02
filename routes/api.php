@@ -40,7 +40,7 @@ Route::put('products/{id}', 'ProductController@update');
 Route::put('products/status/{id}', 'ProductController@updateStatus');
 Route::delete('products/{id}', 'ProductController@delete');
 
-
+Route::get('category/categorylist', 'ProductCategoryController@categorylist');
 Route::get('category', 'ProductCategoryController@index');
 Route::get('category/{id}', 'ProductCategoryController@show');
 Route::post('category', 'ProductCategoryController@store');
