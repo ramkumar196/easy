@@ -35,83 +35,21 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
 
     $scope.cartListing();
 
-    $scope.productListing =function(type)
+    $scope.deleteCart =function(order_id)
     {
-    commonServices.productListing(type).then(function(res){
-		console.log(res.data);
-				var d = res.data;
-				if(d.http_code == 404) {
-				  alert('Data not found');
-				  return;
-				}
-                switch(type)
-                {
-                    case 'new':
-                    $scope.newproductlisting = res.data; 
-                    break;
-
-                    case 'best':
-                    $scope.bestproductlisting = res.data; 
-                    break;
-
-                    case 'feature':
-                    $scope.featureproductlisting = res.data; 
-                    break;
-                    default:
-
-                    $scope.allproductlisting = res.data; 
-                    break;
-
-                }       
-                
-					//	}
-		
-            });
-    }
-    $scope.product_id = document.getElementById('product_id').value;
-
-    $scope.productFilter =function(data)
-    {
-    commonServices.productFilter(data).then(function(res){
-
-		console.log(res.data);
-				var d = res.data;
-				if(d.http_code == 404) {
-				  alert('Data not found');
-				  return;
-                }
-                $scope.filterproducts= res.data;
-    })
-    };
-     $scope.product_qty=1;
-
-    $scope.updateCart=function(data)
-    {
-        var product_price=(data.product_price - data.product_offer)*$scope.product_qty;
-         let dataArray= {
-           'product_id':data.product_id,
-            'user_id':USERID,
-            'quantity':$scope.product_qty,
-            'total':product_price,
-            'subtotal':product_price,
-        };
-
-        alertify.confirm("Are you sure ?", function () {
-            commonServices.updateCart(dataArray).then(function(res)
-            {
+    let data = {'order_id':order_id};
+    commonServices.deleteCart(data).then(function(res){
+        console.log(res.data);
                 var d = res.data;
                 if(d.http_code == 404) {
-                return;
+                  alert('Data not found');
+                  return;
                 }
-                alertify.alert("Product added to cart",function(){
-                window.location.href = '/cart';
-                });
-                
+                if(d.http_code == 200) {
+                alertify.alert("Order removed from cart list");                    
+                $scope.cartListing();
+                }
             });
-        }, function() {
-            // user clicked "cancel"
-        });
-       
     }
 
     $scope.loginAlert =function()

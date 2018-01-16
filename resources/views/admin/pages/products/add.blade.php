@@ -39,13 +39,28 @@
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Category</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select name="category_id" ng-model="product.category_id" class="form-control ">
+                                            <select ng-change="getVariants(product.category_id,main_category_list)" name="category_id" ng-model="product.category_id" class="form-control ">
                                                 <option value="@{{ m.category_id }}" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
                                             </select>
                                         <span class="help text-danger" ng-if="errors.category_id[0]!= ''">@{{errors.category[0]}}</span> 
                                         </div>
                                     </div>
-                          
+
+                                    <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Variants</label>
+                                            @{{variants}}
+                                    </div>
+
+
+                                    <div class="form-group" ng-repeat="(kd,vd) in variants_list">
+                                        <label class="col-md-3 col-xs-12 control-label">@{{ vd.variant_name }}</label>
+                                        <div class="col-md-9 col-xs-12 form-group " ng-repeat="(ku,vu) in vd.variant_value">
+                                        <input class="form-control" ng-readonly="true" placeholder="@{{vu}}" type="text" style="width:20%;float:left;margin:5px" ng-model="variants[ku].name" id="product_name" class="form-control" ng-init="variants[kd][ku].name = vu" value="@{{vu}}"/> 
+                                        <input class="form-control" type="text" style="width:20%;float:left;margin:5px" placeholder="Variant Price" ng-model="variants[kd][ku].addprice" id="product_name" class="form-control"/>        
+                                        <input class="form-control" type="text" style="width:20%;float:left;margin:5px" placeholder="Variant Stock" ng-model="variants[kd][ku].stock" id="product_name" class="form-control"/> 
+                                        </div>    
+                                    </div>
+                                        
 
                                     <input type="hidden" name="p_status" ng-model="product.p_status" value="A" />
                                     <input type="hidden" name="image" ng-model="product.image" value="" />

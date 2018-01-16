@@ -160,6 +160,16 @@ app.service('commonServices', function ($http,$q,$filter) {
                 return response;
                 deferred.reject(response);
             });
+        },
+        this.deleteCart=function(data){
+            let deferred = $q.defer();      
+            return $http.delete('/api/cart',data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
         }
 });
 

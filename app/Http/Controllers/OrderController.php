@@ -40,7 +40,8 @@ class OrderController extends Controller
     {
         if ($request->has('user_id')) {      
         $user_id=$request->input('user_id');
-        $orders= Order::where('status', 0)->where('user_id',$user_id)->get();
+        $orders= Order::where('status', 1)->where('user_id',$user_id)->get();
+           // return $orders;
         return OrderResource::collection($orders);
         }
         else

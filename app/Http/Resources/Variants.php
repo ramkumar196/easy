@@ -18,9 +18,8 @@ class Variants extends Resource
         return[
             'variant_name'=>$this->variant_name,
             'variant_type'=>$this->variant_type,
-            'variant_value'=>$this->variant_value,
+            'variant_value'=>explode(',',$this->variant_value),
             'variant_id'=>$this->id
-            //'products'=>Products::collection($this->products())            
         ];
     }
 }

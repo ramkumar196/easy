@@ -26,10 +26,10 @@ class Product extends Model
      protected $hidden = [
     ];
 
-    // public function orders()
-    // {
-    //     return $this->hasOne('App\Order');
-    // }
+    public function orders()
+    {
+        return $this->hasOne('App\Order');
+    }
 
 
 

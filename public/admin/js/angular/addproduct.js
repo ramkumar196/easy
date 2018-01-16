@@ -54,9 +54,11 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 		return deferred.promise;
 
 	};
+	$scope.variants={};
 
     $scope.addproduct = function () {
 
+		console.log('variants',$scope.variants);
 		let attributes = {
 				};
 
@@ -78,7 +80,7 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 			product_photo:window.image1,
 			product_photo_2:window.image2,
 			product_photo_3:window.image3,
-			product_photo_4:window.image4
+			product_photo_4:window.image4,
 			//attributes: JSON.stringify(attributes)
 		};
 
@@ -100,6 +102,19 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 		});
 
 	};
+
+	$scope.variants_list = {};
+	$scope.getVariants = function(category_id,main_category_list)
+	{
+		angular.forEach(main_category_list, function (v, k) {
+			if(v.category_id == category_id)
+			{
+				$scope.variants_list= v.variants;
+			}
+		});
+		
+		console.log('variants',$scope.variants_list);
+	}
 
 
 }
