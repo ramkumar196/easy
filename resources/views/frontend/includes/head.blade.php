@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>Hexino premium HTML5 & CSS3 Template</title>
+<title>Easy</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{!! asset('frontend/css/bootstrap.min.css'); !!}">
@@ -22,15 +22,24 @@
 <link rel="stylesheet" href="{!! asset('frontend/css/rateit.css') !!}">
 <link rel="stylesheet" href="{!! asset('frontend/css/bootstrap-select.min.css') !!}">
 
+
+<script>
+	@if (session()->has('userid'))
+	var USERID = '{{session()->get('userid')}}';
+	@else
+	var USERID = '';
+	@endif
+</script>
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="{!! asset('frontend/css/font-awesome.css') !!}">
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/alertify.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-filter.js'); !!}"></script>
+<script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-sanitize.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/dirPagination.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-owl-carousel.js'); !!}"></script>
+
   <script type="text/javascript" src="{!! asset('frontend/js/angular/app.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/header.js'); !!}"></script>
 

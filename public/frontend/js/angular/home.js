@@ -94,6 +94,49 @@ function HomepageController ($scope, $http, $log, $q,$filter,$window,commonServi
        
     }
 
+
+    $scope.updateCart=function(product_id)
+    {
+        let dataArray = {'product_id':product_id,'user_id':USERID};
+
+        alertify.confirm("Are you sure ?", function () {
+            commonServices.updateCart(dataArray).then(function(res)
+            {
+                var d = res.data;
+                if(d.http_code == 404) {
+                return;
+                }
+                $scope.productList();
+                alertify.alert("Product added to cart");
+                
+            });
+        }, function() {
+            // user clicked "cancel"
+        });
+       
+    }
+
+
+    $scope.updateWishList=function(data)
+    {
+        let dataArray = {'product_id':data.product_id,'user_id':data.user_id};
+
+        alertify.confirm("Are you sure ?", function () {
+            commonServices.updateWishList(dataArray).then(function(res)
+            {
+                var d = res.data;
+                if(d.http_code == 404) {
+                return;
+                }
+                $scope.productList();
+                alertify.alert("Product added to wishlist");
+                
+            });
+        }, function() {
+            // user clicked "cancel"
+        });
+       
+    }
        console.log( $scope.statusList);
 
             

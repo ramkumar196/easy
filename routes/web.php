@@ -61,6 +61,9 @@ Route::prefix('variants')->group(function()
     
 });
 
+Route::get('/cart', 'OrderController@cartview')->name('cart');
+
+
 Route::resource('products', 'ProductController');
 Route::resource('category', 'ProductCategoryController');
 Route::resource('variants', 'VariantsController');

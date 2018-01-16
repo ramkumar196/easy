@@ -6,15 +6,25 @@
       <div class="header-top-inner">
         <div class="cnt-account">
           <ul class="list-unstyled">
-		  @if (session('status'))
 
+
+		  @if (session()->has('userid'))
             <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
             <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
             <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
             <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li>
+             <a class="mb-control" data-box="#mb-signout" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();"><i class="icon fa fa-check"></i>Logout</a></li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+
 			@else
 
-            <li><a href="#"><i class="icon fa fa-lock"></i>Login</a></li>
+            <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
+            <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i>Login</a></li>
 			@endif
           </ul>
         </div>
@@ -187,13 +197,16 @@
   <div class="container">
     <div class="breadcrumb-inner">
       <ul class="list-inline list-unstyled">
-        <li><a href="#">Home</a></li>
-        <li class='active'>Handbags</li>
+        <li><a href="#"><a href="{{route('home')}}">Home</a></li>
+        @for($i = 0; $i <= count(Request::segments()); $i++)
+      @if(Request::segment($i))
+      <li class="active">
+      <a href="">{{ucfirst(trim(Request::segment($i)))}}</a>
+      </li>
+        @endif
+      @endfor
       </ul>
     </div>
     <!-- /.breadcrumb-inner -->
   </div>
-
-  <!-- /.container -->
-</div>
 @endif

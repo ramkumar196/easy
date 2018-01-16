@@ -1,5 +1,6 @@
 @extends('frontend.layouts.default')
 @section('content')
+
 	<div class='container' ng-controller="ProductDetailController">
 		<div class='row single-product'>
 			<div class='col-md-3 sidebar'>
@@ -151,7 +152,7 @@
 				<div class="row  wow fadeInUp">
 
 					     <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
-    <div class="product-item-holder size-big single-product-gallery small-gallery">
+    <div id="productslider" class="product-item-holder size-big single-product-gallery small-gallery">
 	
         {{--  <div id="owl-single-product">  --}}
 
@@ -163,12 +164,17 @@
 		autoplayTimeout:2000,
 		slideSpeed : 200,
     	navigation : true,
+    	addClassActive:true
 
-    }">
+
+    }"> 
 	<div owl-carousel-item="" class="item" ng-repeat="(k,v) in pd.product_images track by $index" class="single-product-gallery-item" id="slide@{{ key+1 }}">
                     <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="@{{k+1}}" href="#slide@{{k+1}}">
-                        {{--  <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ v }}" />  --}}
-						<zoom class="img-responsive" src="@{{ v }}" frame="example1" img="slide@{{k+1}}" zoomlvl="1.25"></zoom>
+						 <img ng-if="k == 0" elevatezoom class="img-responsive"     ng-src="@{{v}}"
+         zoom-image="@{{v}}" />
+         				<img ng-if="k != 0" class="img-responsive"     ng-src="@{{v}}"
+         zoom-image="@{{v}}" />
+
 
                     </a>
                 </div>
@@ -330,7 +336,8 @@
 									</div>
 									<div class="col-sm-9">
 										<div class="stock-box">
-											<span class="value">In Stock</span>
+											<span class="value" ng-if="pd.stock_status=0">In Stock</span>
+											<span class="value" ng-if="pd.stock_status=1">Stock Available</span>
 										</div>
 									</div>
 								</div><!-- /.row -->
@@ -379,16 +386,20 @@
 										<div class="cart-quantity">
 											<div class="quant-input">
 								                <div class="arrows">
-								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+								                  <div ng-click="increment()" class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+								                  <div ng-click="decrement()" class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
 								                </div>
-								                <input type="text" value="1">
+								                <input ng-model="product_qty" type="text" value="@{{product_qty}}">
 							              </div>
 							            </div>
 									</div>
 
 									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										@if(session()->has('userid'))
+										<a href="#" class="btn btn-primary" ng-click="updateCart({'product_id':pd.product_id,'product_price':pd.price,'product_offer':pd.offer})"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										@else
+										<a href="#" class="btn btn-primary" ng-click="loginAlert()"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										@endif
 									</div>
 
 
@@ -419,8 +430,7 @@
 							<div class="tab-content">
 
 								<div id="description" class="tab-pane in active">
-									<div class="product-tab">
-										<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+									<div  ng-bind-html="pd.detail_description">
 									</div>
 								</div><!-- /.tab-pane -->
 
@@ -701,5 +711,7 @@
 </div><!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 <script src="{!! asset('frontend/js/angular/productdetail.js') !!}"></script>
+<script>
 
+</script>
 @endsection

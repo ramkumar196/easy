@@ -1,4 +1,4 @@
-var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter'])
+var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize'])
 /*["ngAlertify"]*/
 app.directive('loading', ['$http', function ($http) {
     return {
@@ -120,8 +120,47 @@ app.service('commonServices', function ($http,$q,$filter) {
                 return response;
                 deferred.reject(response);
             });
+        },
+        this.updateCart=function(data){
+            let deferred = $q.defer();      
+            return $http.post('/api/updateCart',data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
+        },
+        this.updateWishList=function(data){
+            let deferred = $q.defer();      
+            return $http.post('/api/updateWishList',data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
+        },
+        this.Wishlist=function(data){
+            let deferred = $q.defer();      
+            return $http.get('/api/Wishlist',data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
+        },
+        this.Cartlist=function(data){
+            let deferred = $q.defer();      
+            return $http.post('/api/cartlist',data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
         }
-
 });
 
 app.filter('capitalize', function() {
@@ -258,3 +297,37 @@ app.directive('zoom', function($window) {
         };
     });
     
+    app.directive('elevatezoom', function($compile) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      console.log("Linking")
+
+      //Will watch for changes on the attribute
+      attrs.$observe('zoomImage',function(){
+        linkElevateZoom();
+      });
+
+      // attrs.$watch('ng-elevate-zoom',function(){
+      //   linkElevateZoom();
+      // });
+      // scope.$watch(attrs.ng-elevate-zoom, function(element) {
+      //   console.log('element',element);
+      // });
+
+      //console.log('element',element[0].attributes[0])
+
+      function linkElevateZoom(){
+
+        console.log('zoom attrs',attrs);
+        //Check if its not empty
+        if (!attrs.zoomImage) return;
+        element.attr('data-zoom-image',attrs.zoomImage);
+        $(element).elevateZoom();
+      }
+      
+      linkElevateZoom();
+
+    }
+  };
+});

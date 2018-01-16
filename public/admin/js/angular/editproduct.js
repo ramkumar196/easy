@@ -1,4 +1,8 @@
 window.image='';
+window.image1='';
+window.image2='';
+window.image3='';
+window.image4='';
 
 function EditProductController ($scope, $http, $log, $q,product_services,alertify) {
 
@@ -10,7 +14,7 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 	$scope.product.price='';
 	$scope.product.offer='';
 	$scope.product.description='';
-	$scope.product.category='';	
+	$scope.product.category_id='';	
     $scope.product.product_photo='';
     $scope.product.stock='';
 	$scope.product.sale_available='';
@@ -53,8 +57,9 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
                 $scope.product.offer = product_details[0].offer;
                 $scope.product.category_id=product_details[0].category_id;
                 $scope.product.description=product_details[0].description;
-				$scope.product.product_photo=product_details[0].product_photo;
+				$scope.product.product_photo=product_details[0].product_image;
 				$scope.product.stock=product_details[0].stock;
+				$scope.product.stock_status=product_details[0].stock_status;
 				$scope.product.sale_available=product_details[0].sale_available;
 				$scope.product.weight=product_details[0].weight;
 				$scope.product.shipping_status=product_details[0].shipping_status;
@@ -63,7 +68,12 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 				$scope.product.meta_keywords=product_details[0].meta_keywords;
 				$scope.product.meta_description=product_details[0].meta_description;
 				$scope.product.detail_description=product_details[0].detail_description;
+				window.image1=product_details[0].product_image;
+				window.image2=product_details[0].product_image_2;
+				window.image3=product_details[0].product_image_3;
+				window.image4=product_details[0].product_image_4;
 
+				console.log('image',window.image1);
 				
 				console.log('product',$scope.product);
 
@@ -98,7 +108,7 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
             product_name: $scope.product.product_name,
             price : $scope.product.price,
 			offer: $scope.product.offer,
-			category:$scope.category,
+			category_id:$scope.product.category_id,
 			description:$scope.product.description,
 			stock:$scope.product.stock,
 			sale_available:$scope.product.sale_available,

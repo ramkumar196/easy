@@ -39,10 +39,10 @@
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Category</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select name="category_id" ng-model="category_id" class="form-control ">
-                                                <option value="@{{ m.id }}" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
+                                            <select name="category_id" ng-model="product.category_id" class="form-control ">
+                                                <option value="@{{ m.category_id }}" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
                                             </select>
-                                        <span class="help text-danger" ng-if="errors.main_category[0]!= ''">@{{errors.category[0]}}</span> 
+                                        <span class="help text-danger" ng-if="errors.category_id[0]!= ''">@{{errors.category[0]}}</span> 
                                         </div>
                                     </div>
                           

@@ -74,10 +74,37 @@
 
        <!-- END TEMPLATE -->
        <script>
-                             $("#file-simple-1").fileinput({
-                              //*initialPreview: [
-    //"<img src='{!! asset('admin/assets/fileupload/upload-image.png'); !!}' class='file-preview-image' alt='Desert' title='Desert'>",
-//],
+
+        var image = [];
+        var image_2 = [];
+        var image_3 = [];
+        var image_4= [];
+
+        @isset($product_details['product_photo'])
+              @if($product_details['product_photo'] != '')
+                  image = [`<img src="{{$product_details['product_photo']}}" class="file-preview-image" />`];
+              @endif
+        @endisset
+        @isset($product_details['product_photo_2'])
+                @if($product_details['product_photo_2'] != '')
+                   image_2 = [`<img src="{{$product_details['product_photo_2']}}" class="file-preview-image" />`];
+                @endif
+        @endisset
+        @isset($product_details['product_photo_3'])
+                @if($product_details['product_photo_3'] != '')
+                     image_3 = [`<img src="{{$product_details['product_photo_3']}}" class="file-preview-image" />`];
+                @endif
+        @endisset
+        @isset($product_details['product_photo_4'])
+                @if($product_details['product_photo_4'] != '')
+                   image_4 = [`<img src="{{$product_details['product_photo_4']}}" class="file-preview-image" />`];
+              @endif
+        @endisset
+
+
+        
+                                     $("#file-simple-1").fileinput({
+                              initialPreview: image,
                                 uploadUrl: "/file-upload-batch/2",
                                 allowedFileExtensions: ["jpg", "png", "gif"],
                                 maxImageWidth: 250,
@@ -95,6 +122,7 @@ console.log(window.image);
                             });
 
                                $("#file-simple-2").fileinput({
+                                initialPreview: image_2,
                                 //uploadUrl: "/file-upload-batch/2",
                                 allowedFileExtensions: ["jpg", "png", "gif"],
                                 maxImageWidth: 250,
@@ -112,6 +140,7 @@ console.log(window.image);
                             });
                             $("#file-simple-3").fileinput({
                                // uploadUrl: "/file-upload-batch/2",
+                                initialPreview: image_3,
                                 allowedFileExtensions: ["jpg", "png", "gif"],
                                 maxImageWidth: 250,
                                 maxImageHeight: 250,
@@ -127,7 +156,8 @@ window.image3='';
                             });
 
                             $("#file-simple-4").fileinput({
-                                uploadUrl: "/file-upload-batch/2",
+                                initialPreview: image_4,
+                                //uploadUrl: "/file-upload-batch/2",
                                 allowedFileExtensions: ["jpg", "png", "gif"],
                                 maxImageWidth: 250,
                                 maxImageHeight: 250,

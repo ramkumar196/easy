@@ -42,7 +42,12 @@
 	</div>
 	<div class="form-group">
 		<label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		<input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		<input type="phone" name="phone" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ old('name') }}" >
+		@if ($errors->has('phone'))
+			<span class="help-block">
+			<strong>{{ $errors->first('phone') }}</strong>
+			</span>
+		@endif
 	</div>
 	<div class="form-group">
 		<label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
@@ -55,7 +60,7 @@
 	</div>
 	 <div class="form-group">
 		<label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		<input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		<input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
 	</div>
 	  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 </form>

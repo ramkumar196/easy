@@ -1,4 +1,4 @@
-function ProductDetailController ($scope, $http, $log, $q,$window,commonServices,alertify) {
+function CartListController ($scope, $http, $log, $q,$window,commonServices,alertify) {
     $scope.fullwidthslider = ["frontend/images/sliders/Main-Banner1.jpg", "frontend/images/sliders/Main-Banner2.jpg","frontend/images/sliders/Main-Banner3.jpg"];
     $scope.headerCategoryListing =function()
     {
@@ -15,22 +15,25 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
 		
             });
     }
+    $scope.allcartlisting={};
 
-    $scope.activeAttribute='ng-elevate-zoom';
-    var myEl = angular.element( document.querySelector( '#productslider a img' ) );
-        console.log(myEl);
-        myEl.removeAttr('ng-elevate-zoom');
-        
-
-    $scope.checkActiveClass =function(k)
+    $scope.cartListing =function()
     {
-       var myEl = angular.element( document.querySelector( '#productslider .item' ) );
-       var checkactiveclass = myEl.hasClass('active');
-       if(checkactiveclass)
-        return true
-        else
-        return false;
+    let data = {'user_id':USERID};
+    commonServices.Cartlist(data).then(function(res){
+        console.log(res.data);
+                var d = res.data;
+                if(d.http_code == 404) {
+                  alert('Data not found');
+                  return;
+                }
+                //if(d.http_code == 200) {
+                $scope.allcartlisting = res.data;
+                    //  }
+            });
     }
+
+    $scope.cartListing();
 
     $scope.productListing =function(type)
     {
@@ -223,4 +226,4 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
 
             
 }
-    app.controller('ProductDetailController',ProductDetailController);
+    app.controller('CartListController',CartListController);

@@ -14,7 +14,7 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 	$scope.product.price='';
 	$scope.product.offer='';
 	$scope.product.description='';
-	$scope.product.category='';	
+	$scope.product.category_id='';	
 	$scope.product.product_photo='';
 	$scope.product.stock='';
 	$scope.product.sale_available=1;
@@ -26,11 +26,6 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 	$scope.product.meta_keywords='';
 	$scope.product.meta_description='';
 	$scope.product.detail_description='';
-	$scope.outputBrowsers = [
- 	{	icon: "",	name: "Opera",	maker: "Opera Software",	ticked: true	},
- 	{	icon: "",	name: "Firefox",	maker: "Mozilla Foundation",	ticked: true	},
- 	{	icon: "",	name: "Chrome",	maker: "Google",	ticked: true	}
-];
 
 	product_services.category_list().then(function(res){
 		console.log(res.data);

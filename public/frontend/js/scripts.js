@@ -341,3 +341,7 @@ jQuery("[data-toggle='tooltip']").tooltip();
 
 
 })
+
+jQuery( document ).ready(function() {
+    jQuery('#native').elevateZoom();
+});

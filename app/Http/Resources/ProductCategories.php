@@ -19,6 +19,7 @@ class ProductCategories extends Resource
         return[
             'category_name'=>$this->category_name,
             'category_id'=>$this->id,
+            'status'=>$this->status,
             'variants'=>Variants::collection($this->variants),
             //'products'=>Products::collection($this->products())            
         ];

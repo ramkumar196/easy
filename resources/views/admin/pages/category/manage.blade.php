@@ -68,7 +68,7 @@
                                                         <button class="btn btn-default btn-sm" ng-click="redirect(m.id)" ><span class="fa fa-pencil"></span></button>
                                                         </div>
                                                         <div class="form-group">
-                                                        <select class="form-control" ng-model="m.status" ng-change="updateStatus(m.id,m.status)" ng-if="x.status_name != m.status" ng-options=" x.status_name disable when x.status == m.status for x in statusList track by x.status">
+                                                        <select class="form-control" ng-model="m.status" ng-change="updateStatus(m.category_id,m.status)" ng-if="x.status_name != m.status" ng-options=" x.status_name disable when x.status == m.status for x in statusList track by x.status">
                                                      <option value="">Status</option>
                                                     </select>
                                                         </div>

@@ -7,6 +7,7 @@ use App\Product;
 use View;
 use Image;
 use App\Http\Resources\Products as ProductResource;
+use DB;
 
 
 
@@ -163,7 +164,17 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-          return View::make('admin.pages.products.edit')->with(['product_id' => $id]);        
+        $product_details = DB::table('products')->where('id',$id)->get();
+
+            $product_array = array();
+
+            $product_array['product_photo'] = $this->product_photo_exists($product_details[0]->product_photo);
+            $product_array['product_photo_2'] = $this->product_photo_exists($product_details[0]->product_photo_2);
+            $product_array['product_photo_3'] = $this->product_photo_exists($product_details[0]->product_photo_3);
+            $product_array['product_photo_4'] = $this->product_photo_exists($product_details[0]->product_photo_4);
+
+
+          return View::make('admin.pages.products.edit')->with(['product_id' => $id,'product_details'=>$product_array]);        
             
     }
 
@@ -189,9 +200,10 @@ class ProductController extends Controller
         $requestData = $request->all();
 
 
-        $base64_str=$request->input('product_photo');
+       $base64_str=$request->input('product_photo');
+
         
-        if($base64_str != '')
+        if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
                 $png_url = "product-".time().".png";
@@ -207,8 +219,9 @@ class ProductController extends Controller
         }
 
         $base64_str=$request->input('product_photo_2');
+
         
-        if($base64_str != '')
+        if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
                 $png_url = "product-".time().".png";
@@ -224,7 +237,7 @@ class ProductController extends Controller
         }
         $base64_str=$request->input('product_photo_3');
         
-        if($base64_str != '')
+        if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
                 $png_url = "product-".time().".png";
@@ -236,12 +249,12 @@ class ProductController extends Controller
                 $requestData['product_photo_3'] = $png_url;
         }
         else{
-            unset($requestData['product_photo_4']);
+            unset($requestData['product_photo_3']);
         }
 
         $base64_str=$request->input('product_photo_4');
         
-        if($base64_str != '')
+        if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
                 $png_url = "product-".time().".png";
@@ -286,6 +299,23 @@ class ProductController extends Controller
 
         return 204;
     }
+
+    public function product_photo_exists($photo)
+     {
+        if($photo != '')
+        {
+            if(file_exists( public_path() . '/uploads/products/' . $photo)) {
+                return url('uploads/products/' . $photo);
+            } else {
+                return '';
+            }
+        }
+        else
+        {
+            return '';
+        }     
+     }
+
 
    
 }

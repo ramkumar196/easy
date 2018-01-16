@@ -27,6 +27,10 @@ Route::get('/productslist/{id}', 'HomeController@productslist');
 Route::get('/categoryproduct', 'HomeController@categoryProduct');
 Route::get('/homeproducts/{id}', 'HomeController@homeproducts');
 Route::post('/homeproductsfilter', 'HomeController@productFilter');
+Route::post('/updateCart', 'OrderController@store');
+Route::post('/cartlist', 'OrderController@cartlist');
+
+
 
 
 
