@@ -41,7 +41,9 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
                     return ;
                     
 		
-            });
+			});
+	$scope.variants_list={};
+	$scope.variants={};
         product_services.product_details($scope.product_id).then(function(res){
                         var d = res.data;
                         if(d.http_code == 404) {
@@ -72,15 +74,30 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 				window.image2=product_details[0].product_image_2;
 				window.image3=product_details[0].product_image_3;
 				window.image4=product_details[0].product_image_4;
+				$scope.variants = JSON.parse(product_details[0].variants);				
 
-				console.log('image',window.image1);
+				//console.log('variants',$scope.variants);
 				
 				console.log('product',$scope.product);
+
+				$scope.getVariants($scope.product.category_id,$scope.main_category_list);
 
 
                 return ;
      
-            });
+			});
+			
+			$scope.getVariants = function(category_id,main_category_list)
+			{
+				angular.forEach(main_category_list, function (v, k) {
+					if(v.category_id == category_id)
+					{
+						$scope.variants_list= v.variants;
+					}
+				});
+				
+				console.log('variants_list',$scope.variants_list);
+			}
 
     
 	
@@ -98,6 +115,8 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 		return deferred.promise;
 
 	};
+
+	$scope.variants={};	
 
     $scope.updateproduct = function () {
 
@@ -122,7 +141,8 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 			product_photo:window.image1,
 			product_photo_2:window.image2,
 			product_photo_3:window.image3,
-			product_photo_4:window.image4
+			product_photo_4:window.image4,
+			variants:JSON.stringify($scope.variants)
 			//attributes: JSON.stringify(attributes)
 		};
 

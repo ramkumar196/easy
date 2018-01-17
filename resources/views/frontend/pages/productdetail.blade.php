@@ -340,6 +340,15 @@
 											<span class="value" ng-if="pd.stock_status=1">Stock Available</span>
 										</div>
 									</div>
+									<div class="col-sm-2">
+										<div class="form-control" ng-repeat="(kd,vd) in pd.variants" >
+											<select ng-change="changePrice()" ng-model="variantprice[kd]">
+												<option>@{{vd.variant_name}}</option>
+												<option value="@{{vu.addprice}}" ng-repeat="(ku,vu) in vd">@{{vu.name}}</option>
+											</select>
+										</div>
+									</div>
+									
 								</div><!-- /.row -->
 							</div><!-- /.stock-container -->
 
@@ -355,6 +364,8 @@
 										<div class="price-box">
 											<span class="price">@{{ pd.price | currency}}</span>
 											<span class="price-strike">@{{ pd.offer | currency}}</span>
+											<span class="price">@{{ product_price | currency}}</span>
+											
 										</div>
 									</div>
 

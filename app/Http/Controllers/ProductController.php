@@ -69,7 +69,7 @@ class ProductController extends Controller
         if($base64_str != '')
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product01-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -86,7 +86,7 @@ class ProductController extends Controller
         if($base64_str != '')
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product02-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -102,7 +102,7 @@ class ProductController extends Controller
         if($base64_str != '')
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product03-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -119,7 +119,7 @@ class ProductController extends Controller
         if($base64_str != '')
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product04-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -206,7 +206,7 @@ class ProductController extends Controller
         if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product01-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -224,7 +224,7 @@ class ProductController extends Controller
         if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product02-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -240,7 +240,7 @@ class ProductController extends Controller
         if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product03-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
@@ -257,7 +257,7 @@ class ProductController extends Controller
         if($base64_str != '' && strpos($base64_str,'ttp') != 1)
         {
                 $image = base64_decode($base64_str);
-                $png_url = "product-".time().".png";
+                $png_url = "product04-".time().".png";
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);

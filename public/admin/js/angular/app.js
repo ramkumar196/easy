@@ -1,4 +1,4 @@
-var app = angular.module('easyadminapp', ['angularUtils.directives.dirPagination','ngAlertify','textAngular','ngTagsInput','isteven-multi-select'])
+var app = angular.module('easyadminapp', ['angularUtils.directives.dirPagination','ngAlertify','textAngular','ngTagsInput'])
 /*["ngAlertify"]*/
 app.directive('loading', ['$http', function ($http) {
     return {

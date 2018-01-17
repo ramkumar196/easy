@@ -54,6 +54,8 @@
 
                                     <div class="form-group" ng-repeat="(kd,vd) in variants_list">
                                         <label class="col-md-3 col-xs-12 control-label">@{{ vd.variant_name }}</label>
+                                        <input type="hidden" ng-init="variants[kd].variant_name = vd.variant_name" value="@{{ vd.variant_name}}"/>
+                                        <input type="hidden" ng-init="variants[kd].variant_id = vd.variant_id" value="@{{vd.variant_id}}"/>
                                         <div class="col-md-9 col-xs-12 form-group " ng-repeat="(ku,vu) in vd.variant_value">
                                         <input class="form-control" ng-readonly="true" placeholder="@{{vu}}" type="text" style="width:20%;float:left;margin:5px" ng-model="variants[ku].name" id="product_name" class="form-control" ng-init="variants[kd][ku].name = vu" value="@{{vu}}"/> 
                                         <input class="form-control" type="text" style="width:20%;float:left;margin:5px" placeholder="Variant Price" ng-model="variants[kd][ku].addprice" id="product_name" class="form-control"/>        

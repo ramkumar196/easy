@@ -81,10 +81,11 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
     })
     };
      $scope.product_qty=1;
+     $scope.product_price=0;
 
     $scope.updateCart=function(data)
     {
-        var product_price=(data.product_price - data.product_offer)*$scope.product_qty;
+        $scope.product_price += product_price=(data.product_price - data.product_offer)*$scope.product_qty;
          let dataArray= {
            'product_id':data.product_id,
             'user_id':USERID,
@@ -148,6 +149,7 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
         });
        
     }
+    $scope.variantprice = {};
 
     $scope.productDetail =function(id)
     {
@@ -161,6 +163,7 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
 				  return;
                 }
         $scope.pd=res.data;
+        $scope.pd.variants=JSON.parse(res.data.variants);
         let filterData={
             'category_id':$scope.pd.category_id
         }
@@ -171,6 +174,13 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
     console.log('filter',$scope.filterproducts);
 
     $scope.productDetail($scope.product_id);
+
+    $scope.changePrice = function()
+    {
+        angular.forEach($scope.variantprice, function (v, k) {
+        $scope.product_price += v;
+        });
+    }
     
 
 

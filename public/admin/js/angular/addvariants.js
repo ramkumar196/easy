@@ -1,4 +1,4 @@
-function AddVariantsController ($scope, $http, $log, $q,category_services,commonServices,$window,alertify,CommonFunction) {
+function AddVariantsController ($scope, $http, $log, $q,category_services,commonServices,$window,alertify) {
 
 	$scope.errors='';
     $scope.category='';

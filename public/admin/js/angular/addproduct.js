@@ -66,7 +66,7 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
             product_name: $scope.product.product_name,
             price : $scope.product.price,
 			offer: $scope.product.offer,
-			category_id:$scope.category_id,
+			category_id:$scope.product.category_id,
 			description:$scope.product.description,
 			stock:$scope.product.stock,
 			sale_available:$scope.product.sale_available,
@@ -81,6 +81,7 @@ function AddProductController ($scope, $http, $log, $q,product_services,alertify
 			product_photo_2:window.image2,
 			product_photo_3:window.image3,
 			product_photo_4:window.image4,
+			variants:JSON.stringify($scope.variants)
 			//attributes: JSON.stringify(attributes)
 		};
 

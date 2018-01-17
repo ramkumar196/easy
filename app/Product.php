@@ -16,7 +16,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_name', 'description', 'price','offer','category_id','status','product_photo','stock','sale_available','weight','shipping_status','free_shipping','shipping_charge','meta_keywords','meta_description','detail_description','product_photo_2','product_photo_3','product_photo_4'
+        'product_name', 'description', 'price','offer','category_id','status','product_photo','stock','sale_available','weight','shipping_status','free_shipping','shipping_charge','meta_keywords','meta_description','detail_description','product_photo_2','product_photo_3','product_photo_4','variants'
     ];
         /**
      * The attributes that should be hidden for arrays.

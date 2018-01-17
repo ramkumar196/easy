@@ -45,6 +45,8 @@ class Products extends Resource
             'shipping_charge'=>$this->shipping_charge,
             'meta_keywords'=>$this->meta_keywords,
             'meta_description'=>$this->meta_description,
+            'variants'=>$this->variants,   
+            'product_link'=>url('productdetail/'.$this->id),        
             'product_images'=>array($this->product_photo_exists($this->product_photo),$this->product_photo_exists($this->product_photo_2),$this->product_photo_exists($this->product_photo_3),$this->product_photo_exists($this->product_photo_4))
         ];
     }
