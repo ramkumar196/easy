@@ -34,11 +34,12 @@
 					<td ng-click="deleteCart(cl.order_id)" class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
 					<td class="cart-image">
 						<a class="entry-thumbnail" href="">
+							@{{ cl.product_detail.product_image }}
 						    <img src="@{{ cl.product_detail.product_image }}" alt="">
 						</a>
 					</td>
 					<td class="cart-product-name-info">
-						<h4 class='cart-product-description'><a href="">@{{ cl.product_detail.product_image | Capitalize }}</a></h4>
+						<h4 class='cart-product-description'><a href="">@{{ cl.product_detail.product_image | capitalize }}</a></h4>
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="rating rateit-small"></div>

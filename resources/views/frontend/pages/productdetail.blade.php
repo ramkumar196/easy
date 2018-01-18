@@ -343,10 +343,10 @@
 									<div class="col-sm-3 m-t-20">
 										<div class="form-group" ng-repeat="(kd,vd) in pd.variants" >
 											<label class="control-label">@{{vd.variant_name}}</label>
-                                        <input type="hidden" ng-if="variantprice[kd].price" ng-init="variantprice[kd].variant_name = vd.variant_name" value="@{{ vd.variant_name}}"/>
-                                        <input type="hidden" ng-if="variantprice[kd].price" ng-init="variantprice[kd].variant_id = vd.variant_id" value="@{{ vd.variant_id}}"/>
-											<select  class="form-control" ng-change="changePrice()" ng-model="variantprice[kd].price">
-												<option value="@{{vu.addprice}}" ng-repeat="(ku,vu) in vd " ng-if="vu.addprice">@{{vu.name}}</option>
+                                        <input type="hidden" ng-if="variantprice[kd]" ng-init="variantprice[kd].variant_name = vd.variant_name" value="@{{ vd.variant_name}}"/>
+                                        <input type="hidden" ng-if="variantprice[kd]" ng-init="variantprice[kd].variant_id = vd.variant_id" value="@{{ vd.variant_id}}"/>
+											<select  class="form-control" ng-change="changePrice()" ng-model="variantprice[kd].variant">
+												<option value="@{{vu}}" ng-repeat="(ku,vu) in vd " ng-if="vu.addprice">@{{vu.name}}</option>
 											</select>
 										</div>
 									</div>

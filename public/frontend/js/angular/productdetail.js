@@ -92,7 +92,7 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
             'quantity':$scope.product_qty,
             'total':$scope.product_price,
             'subtotal':$scope.product_price,
-            'variants':$scope.variants
+            'variants':JSON.stringify($scope.variantprice)
         };
 
         alertify.confirm("Are you sure ?", function () {
@@ -179,9 +179,10 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
 
     $scope.changePrice = function()
     {
+        //console.log($scope.variantprice);
         angular.forEach($scope.variantprice, function (v, k) {
-            console.log(v);
-        $scope.product_price += parseInt(v.price);
+           var price = JSON.parse(v.variant);
+        $scope.product_price += parseInt(price.addprice);
         });
     }
     

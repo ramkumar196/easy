@@ -105,23 +105,13 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
         let filterData={
             'category_id':$scope.pd.category_id
         }
-       $scope.productFilter(filterData);
         
     })
     }
     console.log('filter',$scope.filterproducts);
 
     $scope.productDetail($scope.product_id);
-    
 
-
-
-   // $scope.headerCategoryListing();
-    //$scope.productList();    
-   // $scope.productListing('new');
-    $scope.productListing('best');
-   // $scope.productListing('feature');
-    //$scope.productListing('');
     
     $scope.currency = $window.currency;
     

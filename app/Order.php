@@ -13,7 +13,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','product_id','quantity','subtotal','total','status'
+        'user_id','product_id','quantity','subtotal','total','status','variants'
     ];
         /**
      * The attributes that should be hidden for arrays.

@@ -23,6 +23,7 @@ class Orders extends Resource
             'subtotal'=>$this->subtotal,
             'total'=>$this->total,
             'status'=>$this->status,
+            'variants'=>$this->variants,
             'products_detail'=>new Products($this->products)            
         ];
     }
