@@ -48,7 +48,7 @@ class VariantsController extends Controller
         $validator=$request->validate([
             'variant_name' => 'required|unique:product_categories,category_name',
             "variant_type" => 'required',
-            "category"=>'required',
+            "product_category_id"=>'required',
             "variant_value"=>'required'
         ]); 
 
@@ -99,7 +99,7 @@ class VariantsController extends Controller
         $validator=$request->validate([
             'variant_name' => 'required|unique:product_categories,category_name',
             "variant_type" => 'required',
-            "category"=>'required',
+            "product_category_id"=>'required',
             "variant_value"=>'required'
 
         ]); 

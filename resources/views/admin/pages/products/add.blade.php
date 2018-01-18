@@ -48,7 +48,6 @@
 
                                     <div class="form-group">
                                             <label class="col-md-3 col-xs-12 control-label">Variants</label>
-                                            @{{variants}}
                                     </div>
 
 

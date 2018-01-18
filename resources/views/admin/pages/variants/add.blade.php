@@ -36,7 +36,7 @@
                                         <div class="col-md-6 col-xs-12">                                                                                            
                                             <select name="category" ng-model="category" class="form-control ">
                                                 <option selected="selected" value="0">All Category</option>
-                                                <option value="@{{ m.id }}" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
+                                                <option value="@{{ m.category_id }}" ng-repeat='m in main_category_list'>@{{ m.category_name }}</option>
                                             </select>
                                         <span class="help text-danger" ng-if="errors.category[0]!= ''">@{{errors.category[0]}}</span> 
                                         </div>

@@ -340,11 +340,13 @@
 											<span class="value" ng-if="pd.stock_status=1">Stock Available</span>
 										</div>
 									</div>
-									<div class="col-sm-2">
-										<div class="form-control" ng-repeat="(kd,vd) in pd.variants" >
-											<select ng-change="changePrice()" ng-model="variantprice[kd]">
-												<option>@{{vd.variant_name}}</option>
-												<option value="@{{vu.addprice}}" ng-repeat="(ku,vu) in vd">@{{vu.name}}</option>
+									<div class="col-sm-3 m-t-20">
+										<div class="form-group" ng-repeat="(kd,vd) in pd.variants" >
+											<label class="control-label">@{{vd.variant_name}}</label>
+                                        <input type="hidden" ng-if="variantprice[kd].price" ng-init="variantprice[kd].variant_name = vd.variant_name" value="@{{ vd.variant_name}}"/>
+                                        <input type="hidden" ng-if="variantprice[kd].price" ng-init="variantprice[kd].variant_id = vd.variant_id" value="@{{ vd.variant_id}}"/>
+											<select  class="form-control" ng-change="changePrice()" ng-model="variantprice[kd].price">
+												<option value="@{{vu.addprice}}" ng-repeat="(ku,vu) in vd " ng-if="vu.addprice">@{{vu.name}}</option>
 											</select>
 										</div>
 									</div>
@@ -362,9 +364,9 @@
 
 									<div class="col-sm-6">
 										<div class="price-box">
-											<span class="price">@{{ pd.price | currency}}</span>
-											<span class="price-strike">@{{ pd.offer | currency}}</span>
 											<span class="price">@{{ product_price | currency}}</span>
+
+											<span class="price-strike">@{{ pd.offer | currency}}</span>
 											
 										</div>
 									</div>

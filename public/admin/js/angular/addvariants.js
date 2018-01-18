@@ -44,7 +44,7 @@ function AddVariantsController ($scope, $http, $log, $q,category_services,common
 		let data = {
 			variant_name: $scope.variant_name,
 			variant_type:$scope.variant_type,
-			category : $scope.category,
+			product_category_id : $scope.category,
 			variant_value : var_val,
 			status:'A'
 			//attributes: JSON.stringify(attributes)
