@@ -55,8 +55,8 @@ function EditProductController ($scope, $http, $log, $q,product_services,alertif
 				
                 $scope.product =[];
                 $scope.product.product_name = product_details[0].product_name;
-                $scope.product.price = product_details[0].price;
-                $scope.product.offer = product_details[0].offer;
+                $scope.product.price = product_details[0].product_price;
+                $scope.product.offer = product_details[0].product_offer;
                 $scope.product.category_id=product_details[0].category_id;
                 $scope.product.description=product_details[0].description;
 				$scope.product.product_photo=product_details[0].product_image;

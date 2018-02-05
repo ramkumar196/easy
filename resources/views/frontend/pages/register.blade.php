@@ -1,18 +1,6 @@
 @extends('frontend.layouts.default')
 @section('content')
 
-<!-- ============================================== HEADER : END ============================================== -->
-<div class="breadcrumb">
-<div class="container">
-	<div class="breadcrumb-inner">
-		<ul class="list-inline list-unstyled">
-			<li><a href="home.html">Home</a></li>
-			<li class='active'>Register</li>
-		</ul>
-	</div><!-- /.breadcrumb-inner -->
-</div><!-- /.container -->
-</div><!-- /.breadcrumb -->
-
 <div class="body-content">
 <div class="container">
 	<div class="sign-in-page">

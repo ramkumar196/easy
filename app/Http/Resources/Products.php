@@ -26,6 +26,8 @@ class Products extends Resource
             'product_name'=>$this->product_name,
             'price'=>$this->price-round($this->price*($this->offer/100),2),
             'offer'=>$this->price,
+            'product_price'=>$this->price,
+            'product_offer'=>$this->offer,
             'offer_percent'=>$this->offer,
             'category_id'=>$this->category_id,
             'description'=>$this->description,

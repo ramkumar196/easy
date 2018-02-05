@@ -741,6 +741,7 @@
             <!-- /.nav-tabs -->
           </div>
           <div class="tab-content outer-top-xs">
+            <div ng-if="allproductlisting.length == 0"><p><center>No products found</center></p></div>
             <div class="tab-pane in active" id="cat-@{{key}}" ng-repeat="(key, value) in allproductlisting | groupBy: 'category_id'">
               <div class="product-slider">
                 <!--<div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">-->
@@ -832,6 +833,7 @@
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
         <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">Featured products</h3>
+          <div ng-if="featureproductlisting.length == 0"><p><center>No products found</center></p></div>
           <data-owl-carousel class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-options="{
         items : 4,
         itemsTablet:[768,2],
@@ -917,6 +919,7 @@
         <div class="best-deal wow fadeInUp outer-bottom-xs">
           <h3 class="section-title">Best seller</h3>
           <div class="sidebar-widget-body outer-top-xs">
+            <div ng-if="bestproductlisting.length == 0"><p><center>No Products found</center></p></div>
             <!--<div class="owl-carousel best-seller custom-carousel owl-theme outer-top-xs">-->
             <data-owl-carousel class="owl-carousel best-seller custom-carousel owl-theme outer-top-xs" data-options="{
     items : 3,
@@ -1082,6 +1085,7 @@
         <section class="section wow fadeInUp new-arriavls">
           <h3 class="section-title">New Arrivals</h3>
           <!--<div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">-->
+            <div ng-if="newproductlisting.length == 0"><p><center>No Products found</center></p></div>
           <data-owl-carousel class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-options="{
         items : 4,
         itemsTablet:[768,2],

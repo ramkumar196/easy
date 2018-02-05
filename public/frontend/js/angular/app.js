@@ -91,9 +91,29 @@ app.service('commonServices', function ($http,$q,$filter) {
               deferred.reject(response);
           });
       },
-      this.categoryListing=function(){
+      this.categoryListing=function(data){
         let deferred = $q.defer();			
-        return $http.get('/api/categorylist').then(function (response) {
+        return $http.get('/api/categorylist',data).then(function (response) {
+            return response;
+            deferred.resolve();
+        }, function (response) {
+            return response;
+            deferred.reject(response);
+        });
+        },
+        this.filterCategoryListing=function(data){
+        let deferred = $q.defer();      
+        return $http.get('/api/categorylist/?id='+data).then(function (response) {
+            return response;
+            deferred.resolve();
+        }, function (response) {
+            return response;
+            deferred.reject(response);
+        });
+        },
+        this.getDetail=function(data,type){
+        let deferred = $q.defer();      
+        return $http.get('/api/'+type+'detail/'+data).then(function (response) {
             return response;
             deferred.resolve();
         }, function (response) {

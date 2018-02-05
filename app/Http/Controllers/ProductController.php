@@ -54,7 +54,7 @@ class ProductController extends Controller
             'product_name' => 'required',
             "description" => 'required',
             "price"=>'required|numeric',
-            "offer"=>'required|numeric',
+            "offer"=>'required|numeric|between:0,99.99',
             "product_photo"=>'required|base64image|base64dimension',
             "product_photo_2"=>'required|base64image|base64dimension',
             "product_photo_3"=>'required|base64image|base64dimension',
@@ -73,7 +73,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700); 
                 $img->save($path);
                 $requestData['product_photo'] = $png_url;
         }
@@ -90,7 +93,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);
                 $img->save($path);
                 $requestData['product_photo_2'] = $png_url;
         }
@@ -106,8 +112,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
-                $img->save($path);
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);                $img->save($path);
                 $requestData['product_photo_3'] = $png_url;
         }
         else{
@@ -123,7 +131,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);
                 $img->save($path);
                 $requestData['product_photo_4'] = $png_url;
         }
@@ -190,10 +201,11 @@ class ProductController extends Controller
         //
         $product = Product::findOrFail($id);
         $validator=$request->validate([
-            'product_name' => 'required|alpha_num',
+            'product_name' => 'required',
             "description" => 'required',
             "price"=>'required|numeric',
-            "offer"=>'required|numeric',
+            "offer"=>'required|numeric|between:0,99.99',
+
            // "product_photo"=>'base64image|base64dimension'
         ]);
 
@@ -210,7 +222,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);
                 $img->save($path);
                 $requestData['product_photo'] = $png_url;
         }
@@ -228,7 +243,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);        
                 $img->save($path);
                 $requestData['product_photo_2'] = $png_url;
         }
@@ -244,7 +262,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);      
                 $img->save($path);
                 $requestData['product_photo_3'] = $png_url;
         }
@@ -261,7 +282,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700);        
+                $img->resize(700, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                });
+                $img->resizeCanvas(700, 700);
                 $img->save($path);
                 $requestData['product_photo_4'] = $png_url;
         }

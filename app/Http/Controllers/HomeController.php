@@ -10,6 +10,7 @@ use App\Http\Resources\ProductCategories;
 
 
 use View;
+use DB;
 
 
 class HomeController extends Controller
@@ -41,7 +42,6 @@ class HomeController extends Controller
       else
       return View::make('frontend.pages.productlist');
       
-
     }
 
     public function productdetail($id)
@@ -55,9 +55,22 @@ class HomeController extends Controller
         return new ProductResource($products);
     }
 
+    public function categorydetail($id)
+    {
+        $category=ProductCategory::find($id);
+        return new ProductCategories($category);
+    }
+
     public function categorylist(Request $request)
     {
-        $categories=ProductCategory::where('main_category',0)->get();//united
+        if ($request->has('id')) {      
+            $category_id =$request->input('id');
+            $categories=ProductCategory::where('main_category',$category_id)->get();//united
+        }
+        else
+        {
+            $categories=ProductCategory::where('main_category',0)->get();//united  
+        }
         
         $categories=$this->addRelation($categories);
         
@@ -100,7 +113,6 @@ class HomeController extends Controller
         $products=Product::orderBy('created_at', 'desc')->get();
 
         $products=Product::all();
-        
 
         return ProductResource::collection($products);
     }
@@ -110,9 +122,39 @@ class HomeController extends Controller
       
         if(isset($request))
         {
-        
+            $order_by = '';
+            if ($request->has('order_by')) {      
+            $order_by =$request->input('order_by');
+             }
+
+            $cat_id ='';
+
+            $product = DB::table('products');
+
+            if ($request->has('category_id')) {      
             $cat_id=$request->input('category_id');
-            $products=Product::where('category_id',$cat_id)->get();
+            $product->where('category_id', $cat_id);
+            }
+
+            //$product->offset(10)
+                //->limit(5)
+
+            //lowest price
+            if($order_by == 1)
+            $product->orderBy('price', 'desc');
+
+            //highest price
+            if($order_by == 2)
+             $product->orderBy('price', 'asc');
+
+            //product Name A to Z
+            if($order_by == 3)
+            $product->orderBy('product_name', 'desc');
+
+            $products = $product->get();
+        
+            //$cat_id=$request->input('category_id');
+           // $products=Product::where('category_id',$cat_id)->get();
         }
         else
         {
@@ -121,6 +163,21 @@ class HomeController extends Controller
 
         return ProductResource::collection($products);
     }
+
+
+    public function searchItems(Request $request)
+    {
+        $products = array();
+        $keyword=$request->input('keyword');
+        if ($request->has('keyword')) { 
+            $products = Product::where('product_name','LIKE',"%{$keyword}%")
+              ->get(); 
+        }
+        return $products;
+    }
+
+
+
 
 
         

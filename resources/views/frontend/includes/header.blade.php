@@ -24,7 +24,7 @@
 			@else
 
             <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login</a></li>
-            <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i>Login</a></li>
+            <li><a href="{{ route('register') }}"><i class="icon fa fa-lock"></i>Register</a></li>
 			@endif
           </ul>
         </div>
@@ -88,6 +88,7 @@
           <!-- /.search-area -->
           <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
         <!-- /.top-search-holder -->
+        @if (session()->has('userid'))
 
         <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
           <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
@@ -126,6 +127,7 @@
             </ul>
             <!-- /.dropdown-menu-->
           </div>
+          @endif
           <!-- /.dropdown-cart -->
 
           <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
@@ -151,7 +153,7 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class=" dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                <li class=" dropdown yamm-fw"> <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
 				<li class="dropdown yamm mega-menu" ng-repeat="cc in allcategorylisting"> <a href="" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@{{ cc.category_name }}</a>
 				<ul class="dropdown-menu container">
                     <li ng-if="cc.subCategory.length > 0">
@@ -198,15 +200,14 @@
     <div class="breadcrumb-inner">
       <ul class="list-inline list-unstyled">
         <li><a href="#"><a href="{{route('home')}}">Home</a></li>
-        @for($i = 0; $i <= count(Request::segments()); $i++)
+      @for($i = 0; $i <= count(Request::segments()); $i++)
       @if(Request::segment($i))
-      <li class="active">
-      <a href="">{{ucfirst(trim(Request::segment($i)))}}</a>
-      </li>
-        @endif
+      <li class="active"><a href="">{{Request::segment($i)}}</a></li>
+      @endif
       @endfor
       </ul>
     </div>
     <!-- /.breadcrumb-inner -->
+  </div>
   </div>
 @endif

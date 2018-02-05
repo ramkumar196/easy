@@ -22,6 +22,8 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/categorylist', 'HomeController@categorylist');
 Route::get('/productslist', 'HomeController@productslist');
 Route::get('/productslist/{id}', 'HomeController@productslist');
+Route::get('/categorydetail/{id}', 'HomeController@categorydetail');
+
 
 
 Route::get('/categoryproduct', 'HomeController@categoryProduct');
