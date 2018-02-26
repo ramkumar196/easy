@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="{!! asset('frontend/css/bootstrap.min.css'); !!}">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="{!! asset('frontend/css/main.css') !!}">
-<link rel="stylesheet" href="{!! asset('frontend/css/blue.css') !!}">
+<link rel="stylesheet" href="{!! asset('frontend/css/main-green.css') !!}">
+<link rel="stylesheet" href="{!! asset('frontend/css/green.css') !!}">
 <link rel="stylesheet" href="{!! asset('frontend/css/owl.carousel.css') !!}">
 <link rel="stylesheet" href="{!! asset('frontend/css/owl.transitions.css') !!}">
 <link rel="stylesheet" href="{!! asset('frontend/css/animate.min.css') !!}">
@@ -39,6 +39,7 @@
 <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-sanitize.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/dirPagination.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-owl-carousel.js'); !!}"></script>
+  <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-checklist.js'); !!}"></script>
 
   <script type="text/javascript" src="{!! asset('frontend/js/angular/app.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/header.js'); !!}"></script>

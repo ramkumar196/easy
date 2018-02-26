@@ -31,4 +31,9 @@ class ProductCategory extends Model
          return $this->hasMany('App\Variants');
      }
 
+     public function category()
+     {
+         return $this->hasMany('App\ProductCategory');
+     }
+
 }

@@ -1,5 +1,27 @@
 function HomepageController ($scope, $http, $log, $q,$filter,$window,commonServices,alertify) {
     $scope.fullwidthslider = ["frontend/images/sliders/Main-Banner1.jpg", "frontend/images/sliders/Main-Banner2.jpg","frontend/images/sliders/Main-Banner3.jpg"];
+    $scope.productClassCounter = 0;
+    $scope.getproductclass = function(key)
+    {
+        console.log('here',$scope.productClassCounter);
+        console.log('here2222',key);
+        if(key == 2)
+        {
+            console.log("hereeee");
+            $scope.productClassCounter++;
+            var productclass =  "tab-pane in active";
+        }
+        else
+        {
+            $scope.productClassCounter++;
+            var productclass = "tab-pane";
+        }
+
+        return productclass;
+
+        //console.log('productClassCounter',$scope.productClassCounter);
+    }
+
     $scope.headerCategoryListing =function()
     {
     commonServices.categoryListing().then(function(res){

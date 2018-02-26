@@ -74,7 +74,7 @@ class HomeController extends Controller
         
         $categories=$this->addRelation($categories);
         
-        return $categories;
+        return ProductCategories::collection($categories);
 
     }
 
@@ -104,7 +104,7 @@ class HomeController extends Controller
     protected function productslist($id=''){
 
         if($id == 'new')
-        $products=Product::orderBy('created_at', 'desc')->get();
+        $products=Product::orderBy('created_at', 'asc')->get();
 
         if($id == 'featured')
         $products=Product::orderBy('created_at', 'desc')->get();

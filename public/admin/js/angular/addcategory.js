@@ -61,6 +61,7 @@ function AddCategoryController ($scope, $http, $log, $q,category_services,alerti
 		let product = {
             category_name: $scope.category_name,
 			main_category : $scope.main_category,
+			product_category_id : $scope.main_category,
 			status:'A'
 			//attributes: JSON.stringify(attributes)
         };

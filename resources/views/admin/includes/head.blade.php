@@ -11,7 +11,7 @@
 
   <!-- CSS INCLUDE -->
 
-  <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/theme-default.css'); !!}"/>
+  <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/theme-green.css'); !!}"/>
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-material.min.css'); !!}"/>
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-text.css'); !!}"/>
   <link rel="stylesheet" type="text/css" id="theme" href="{!! asset('admin/css/angular/angular-tags.css'); !!}"/>

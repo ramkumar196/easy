@@ -32,7 +32,7 @@ Route::post('/homeproductsfilter', 'HomeController@productFilter');
 Route::post('/updateCart', 'OrderController@store');
 Route::post('/cartlist', 'OrderController@cartlist');
 
-Route::delete('cart/{id}', 'OrderController@delete');
+Route::delete('cart/{id}', 'OrderController@destroy');
 
 Route::get('products', 'ProductController@index');
 Route::get('products/{id}', 'ProductController@show');

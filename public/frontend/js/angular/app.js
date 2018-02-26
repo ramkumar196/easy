@@ -1,4 +1,4 @@
-var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize'])
+var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize','checklist-model'])
 /*["ngAlertify"]*/
 app.directive('loading', ['$http', function ($http) {
     return {
@@ -183,13 +183,37 @@ app.service('commonServices', function ($http,$q,$filter) {
         },
         this.deleteCart=function(data){
             let deferred = $q.defer();      
-            return $http.delete('/api/cart',data).then(function (response) {
+            return $http.delete('/api/cart/'+data).then(function (response) {
                 return response;
                 deferred.resolve();
             }, function (response) {
                 return response;
                 deferred.reject(response);
             });
+        },
+        this.parseJsonVariants = function(listarray)
+        {
+            angular.forEach(listarray, function(v, k) {
+            console.log('variants',JSON.parse(v.variants));
+            listarray[k].variants = JSON.parse(v.variants);
+            listarray[k].variants[0].variant = JSON.parse(v.variants[0].variant);
+            });
+            return listarray;
+        },
+        this.sumArray = function(listarray)
+        {
+            var sum = 0;
+            console.log('listarray',listarray);
+            angular.forEach(listarray, function(v, k) {
+            //if(!isNaN(parseFloat(v)) && isFinite(v))
+            //{
+                sum += v
+            //}
+            });
+
+          console.log('sum',sum);
+
+            return sum;
         }
 });
 
@@ -360,4 +384,6 @@ app.directive('zoom', function($window) {
 
     }
   };
+
+
 });

@@ -7,7 +7,8 @@
 	<div class="table-responsive">
 		<table class="table">
 			<thead>
-				<tr>
+				<tr ng-if="allcartlisting.length == 0"><td colsspan="4"><center>No Orders Found</center></td></tr>
+				<tr ng-if="allcartlisting.length > 0">
 					<th class="cart-romove item">Remove</th>
 					<th class="cart-description item">Image</th>
 					<th class="cart-product-name item">Product Name</th>
@@ -23,24 +24,23 @@
 						<div class="shopping-cart-btn">
 							<span class="">
 								<a href="{{route('home')}}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
-								<a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
+								<!-- <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a> -->
 							</span>
 						</div><!-- /.shopping-cart-btn -->
 					</td>
 				</tr>
 			</tfoot>
-			<tbody>
-				<tr ng-repeat="cl in allcartlisting">
+			<tbody >
+				<tr ng-repeat="(kl,cl) in allcartlisting">
 					<td ng-click="deleteCart(cl.order_id)" class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
 					<td class="cart-image">
-						<a class="entry-thumbnail" href="">
-							@{{ cl.product_detail.product_image }}
-						    <img src="@{{ cl.product_detail.product_image }}" alt="">
+						<a class="entry-thumbnail" href="@{{cl.products_detail.product_link}}">
+						    <img src="@{{ cl.products_detail.product_image }}" alt="">
 						</a>
 					</td>
 					<td class="cart-product-name-info">
-						<h4 class='cart-product-description'><a href="">@{{ cl.product_detail.product_image | capitalize }}</a></h4>
-						<div class="row">
+						<h4 class='cart-product-description'><a href="">@{{ cl.products_detail.description | capitalize }}</a></h4>
+<!-- 						<div class="row">
 							<div class="col-sm-4">
 								<div class="rating rateit-small"></div>
 							</div>
@@ -50,22 +50,27 @@
 								</div>
 							</div>
 						</div><!-- /.row -->
-						<div class="cart-product-info">
-											<span class="product-color">COLOR:<span>Blue</span></span>
+ 						<div ng-repeat="vv in cl.variants"  class="cart-product-info">
+											<span class="product-color">@{{vv.variant_name}}:<span></span>@{{vv.variant.name}}</span>
 						</div>
 					</td>
 					{{--  <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>  --}}
 					<td class="cart-product-quantity">
 						<div class="quant-input">
 				                <div class="arrows">
-				                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-				                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+				                  <div ng-click="increment(cl.order_id)" class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+				                  <div  ng-click="decrement(cl.order_id)" class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
 				                </div>
-				                <input type="text" value="@{{ cl.quantity }}">
-			              </div>
+				                <input type="text" ng-model="order_qty[cl.order_id]" value="@{{ cl.quantity }}"/>
+			            </div>
 		            </td>
-					<td class="cart-product-sub-total"><span class="cart-sub-total-price">@{{ cl.subtotal }}</span></td>
-					<td class="cart-product-grand-total"><span class="cart-grand-total-price">@{{ cl.total }}</span></td>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">@{{ product_price[cl.order_id] }}</span>
+					</td>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">@{{ order_total[cl.order_id]}}</span>
+					<input type="hidden"  ng-init="order_total[kl] = cl.total" value="@{{ cl.total }}"/>
+
+					</td>
+
 				</tr>
 			</tbody><!-- /tbody -->
 		</table><!-- /table -->
@@ -149,10 +154,10 @@
 			<tr>
 				<th>
 					<div class="cart-sub-total">
-						Subtotal<span class="inner-left-md">$600.00</span>
+						Subtotal<span class="inner-left-md">@{{grand_subtotal}}</span>
 					</div>
 					<div class="cart-grand-total">
-						Grand Total<span class="inner-left-md">$600.00</span>
+						Grand Total<span class="inner-left-md">@{{grand_total}}</span>
 					</div>
 				</th>
 			</tr>

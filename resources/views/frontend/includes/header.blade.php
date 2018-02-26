@@ -154,7 +154,7 @@
             <div class="nav-outer">
               <ul class="nav navbar-nav">
                 <li class=" dropdown yamm-fw"> <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
-				<li class="dropdown yamm mega-menu" ng-repeat="cc in allcategorylisting"> <a href="" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@{{ cc.category_name }}</a>
+				<li class="dropdown yamm mega-menu" ng-repeat="cc in allcategorylisting"> <a href="@{{cc.category_link}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@{{ cc.category_name }}</a>
 				<ul class="dropdown-menu container">
                     <li ng-if="cc.subCategory.length > 0">
                       <div class="yamm-content" >
@@ -162,7 +162,7 @@
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu" ng-repeat="sc in cc.subCategory">
                             <h2 class="title">@{{ sc.category_name }}</h2>
                             <ul class="links">
-                              <li ng-repeat="ssc in sc.subCategory"><a href="#">@{{ssc.category_name }}</a></li>
+                              <li ng-repeat="ssc in sc.subCategory"><a href="@{{ssc.category_link}}">@{{ssc.category_name }}</a></li>
                             </ul>
                           </div>
                           <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image"> <img class="img-responsive" src="{!! asset('frontend/images/banners/top-menu-banner.jpg') !!}" alt=""> </div>

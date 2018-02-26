@@ -20,7 +20,9 @@ class ProductCategories extends Resource
             'category_name'=>$this->category_name,
             'category_id'=>$this->id,
             'status'=>$this->status,
-            'variants'=>Variants::collection($this->variants),
+            'variants'=>Variants::collection($this->variants),       
+            'subCategory'=>ProductCategories::collection($this->category), 
+            'category_link'=>url('catproducts/'.$this->id)      
             //'products'=>Products::collection($this->products())            
         ];
     }
