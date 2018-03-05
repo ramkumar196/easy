@@ -8,7 +8,7 @@
 		<table class="table">
 			<thead>
 				<tr ng-if="allcartlisting.length == 0"><td colsspan="4"><center>No Orders Found</center></td></tr>
-				<tr ng-if="allcartlisting.length > 0">
+				<!--<tr ng-if="allcartlisting.length > 0">
 					<th class="cart-romove item">Remove</th>
 					<th class="cart-description item">Image</th>
 					<th class="cart-product-name item">Product Name</th>
@@ -16,20 +16,21 @@
 					<th class="cart-qty item">Quantity</th>
 					<th class="cart-sub-total item">Subtotal</th>
 					<th class="cart-total last-item">Grandtotal</th>
-				</tr>
+				</tr>-->
+				<tr colspan="7"><h3>My Cart</h3></tr>
 			</thead><!-- /thead -->
-			<tfoot>
+			<!--<tfoot>
 				<tr>
 					<td colspan="7">
 						<div class="shopping-cart-btn">
 							<span class="">
 								<a href="{{route('home')}}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
 								<!-- <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a> -->
-							</span>
+							<!--</span>
 						</div><!-- /.shopping-cart-btn -->
-					</td>
+					<!--</td>
 				</tr>
-			</tfoot>
+			</tfoot>-->
 			<tbody >
 				<tr ng-repeat="(kl,cl) in allcartlisting">
 					<td ng-click="deleteCart(cl.order_id)" class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
@@ -64,10 +65,10 @@
 				                <input type="text" ng-model="order_qty[cl.order_id]" value="@{{ cl.quantity }}"/>
 			            </div>
 		            </td>
-					<td class="cart-product-sub-total"><span class="cart-sub-total-price">@{{ product_price[cl.order_id] }}</span>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">@{{ product_price[cl.order_id] | currency }}</span>
 					</td>
-					<td class="cart-product-grand-total"><span class="cart-grand-total-price">@{{ order_total[cl.order_id]}}</span>
-					<input type="hidden"  ng-init="order_total[kl] = cl.total" value="@{{ cl.total }}"/>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">@{{ order_total[cl.order_id] | currency }}</span>
+					
 
 					</td>
 
@@ -75,7 +76,9 @@
 			</tbody><!-- /tbody -->
 		</table><!-- /table -->
 	</div>
-</div><!-- /.shopping-cart-table -->				<div class="col-md-4 col-sm-12 estimate-ship-tax">
+</div><!-- /.shopping-cart-table -->				
+
+<!--<div class="col-md-4 col-sm-12 estimate-ship-tax">
 	<table class="table">
 		<thead>
 			<tr>
@@ -85,7 +88,7 @@
 				</th>
 			</tr>
 		</thead><!-- /thead -->
-		<tbody>
+		<!--<tbody>
 				<tr>
 					<td>
 						<div class="form-group">
@@ -123,6 +126,7 @@
 	</table>
 </div><!-- /.estimate-ship-tax -->
 
+<div class="col-md-4 col-sm-12 estimate-ship-tax"></div>
 <div class="col-md-4 col-sm-12 estimate-ship-tax">
 	<table class="table">
 		<thead>
@@ -154,10 +158,10 @@
 			<tr>
 				<th>
 					<div class="cart-sub-total">
-						Subtotal<span class="inner-left-md">@{{grand_subtotal}}</span>
+						Subtotal<span class="inner-left-md">@{{grand_subtotal | currency}}</span>
 					</div>
 					<div class="cart-grand-total">
-						Grand Total<span class="inner-left-md">@{{grand_total}}</span>
+						Grand Total<span class="inner-left-md">@{{grand_total | currency}}</span>
 					</div>
 				</th>
 			</tr>
@@ -166,14 +170,14 @@
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-							<button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
-							<span class="">Checkout with multiples address!</span>
+							<a href="{{route('user.checkout')}}" ><button type="button" class="btn btn-primary checkout-btn">PLACE ORDER</button></a>
 						</div>
 					</td>
 				</tr>
 		</tbody><!-- /tbody -->
 	</table><!-- /table -->
 </div><!-- /.cart-shopping-total -->			</div><!-- /.shopping-cart -->
+		</div> <!-- /.row -->
 		</div> <!-- /.row -->
 		</div> <!-- /.row -->
 		</div> <!-- /.row -->

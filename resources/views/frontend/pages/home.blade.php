@@ -6,14 +6,16 @@
 <!-- ============================================== HEADER : END ============================================== -->
   <div class="container outer-top-xs" ng-controller="HomepageController">
   <div class="row">
-        <div class="col-xs-12 col-sm-12">
+        <div>
         <data-owl-carousel id="main-banner" class="owl-carousel home-slider"  data-options="{
       slideSpeed : 300,
       paginationSpeed : 400,
+      itemsTablet:[768,2],
+      itemsDesktop : [1199,2],
       singleItem:true,
       autoPlay:true,
       responsive:true,
-      transitionStyle:'backSlide'
+      transitionStyle:'fadeUp'
 
   }">
                 <div owl-carousel-item="" ng-repeat="i in fullwidthslider" class="item"> <a href="#"><img src="@{{ i }}" alt="main-banner1" class="img-responsive" /></a> </div>
@@ -23,6 +25,7 @@
         
         
     </div>
+    <!--
     <div class="row top-buffer">
     <div class="info-boxes wow fadeInUp">
           <div class="info-boxes-inner">
@@ -39,7 +42,7 @@
               </div>
               <!-- .col -->
 
-              <div class="hidden-md col-sm-4 col-lg-4">
+              <!--<div class="hidden-md col-sm-4 col-lg-4">
                 <div class="info-box">
                   <div class="row">
                     <div class="col-xs-12">
@@ -51,7 +54,7 @@
               </div>
               <!-- .col -->
 
-              <div class="col-md-6 col-sm-4 col-lg-4">
+             <!-- <div class="col-md-6 col-sm-4 col-lg-4">
                 <div class="info-box">
                   <div class="row">
                     <div class="col-xs-12">
@@ -62,13 +65,13 @@
                 </div>
               </div>
               <!-- .col -->
-            </div>
+           <!-- </div>
             <!-- /.row -->
-          </div>
+          <!--</div>
           <!-- /.info-boxes-inner -->
 
-        </div>
-    </div>
+        <!--</div>
+    </div>-->
 
     <div class="row top-buffer">
         <div id="product-tabs-slider" class="scroll-tabs wow fadeInUp">
@@ -114,7 +117,11 @@
                           <h3 class="name"><a href="productdetail/@{{ap.product_id}}">@{{ ap.product_name | capitalize }}</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price">@{{ ap.price | currency }} </span> <span class="price-before-discount">@{{ ap.offer | currency }}</span> </div>
+                          <div class="product-price"> 
+                            <span class="price">@{{ ap.price | currency }} </span>
+                            <span ng-if="ap.product_offer != 0" class="price-before-discount">@{{ ap.offer | currency }}</span> 
+                            <span  ng-if="ap.product_offer != 0" class="offer">@{{ ap.product_offer | offer}} </span> 
+                           </div>
                           <!-- /.product-price -->
 
                         </div>
@@ -153,27 +160,30 @@
         </div>
         <!-- /.scroll-tabs -->
         <!-- ============================================== SCROLL TABS : END ============================================== -->
-        <!-- ============================================== WIDE PRODUCTS ============================================== -->
-        <div class="wide-banners wow fadeInUp outer-bottom-xs">
-          <div class="row">
-            <div class="col-md-7 col-sm-7">
-              <div class="wide-banner cnt-strip">
-                <div class="image"> <img class="img-responsive" src="{!! asset('frontend/images/banners/home-banner1.jpg') !!}"alt=""> </div>
-              </div>
-              <!-- /.wide-banner -->
+        <!-- ============================================== WIDE PRODUCTS-->
+
+        <section class="section featured-product wow fadeInUp">
+          <h3 class="section-title">Brands products</h3>
+          <div ng-if="brandAdsList.length == 0"><p><center>No brands found</center></p></div>
+          <data-owl-carousel class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-options="{
+        items : 2,
+        navigation : true,
+        pagination : false,
+        navigationText: ['', '']
+    }">
+            <div owl-carousel-item="" class="item item-carousel" ng-repeat="fp in brandAdsList">
+              <figure class="snip1581"><img src="@{{ fp.imageurl }}" alt="profile-sample2"/>
+            <figcaption>
+              <h3 class="title1">@{{fp.caption}}</h3>
+              <h3 class="title2"></h3>
+              <h3 class="title3"></h3>
+            </figcaption><a href="#"></a>
+          </figure>
             </div>
-            <!-- /.col -->
-            <div class="col-md-5 col-sm-5">
-              <div class="wide-banner cnt-strip">
-                <div class="image"> <img class="img-responsive" src="{!! asset('frontend/images/banners/home-banner2.jpg') !!}"alt=""> </div>
-              </div>
-              <!-- /.wide-banner -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.wide-banners -->
+            <!-- /.item -->
+          </data-owl-carousel>
+          <!-- /.home-owl-carousel -->
+        </section>
 
         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
@@ -203,7 +213,8 @@
                     <h3 class="name"><a href="productdetail/@{{fp.product_id}}">@{{ fp.product_name | capitalize}}</a></h3>
                     <div class="rating rateit-small"></div>
                     <div class="description"></div>
-                    <div class="product-price"> <span class="price">@{{ fp.price | currency }}  </span> <span class="price-before-discount">@{{  fp.offer | currency }}</span> </div>
+                    <div class="product-price"> <span class="price">@{{ fp.price | currency }}  </span> <span ng-if="fp.product_offer != 0" class="price-before-discount">@{{ fp.offer | currency }}</span> 
+                            <span  ng-if="fp.product_offer != 0" class="offer">@{{ fp.product_offer | offer}} </span> </div>
                     <!-- /.product-price -->
 
                   </div>
@@ -262,173 +273,77 @@
         <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
         <!-- ============================================== BEST SELLER ============================================== -->
       
-        <div class="best-deal wow fadeInUp outer-bottom-xs">
-          <h3 class="section-title">Best seller</h3>
-          <div class="sidebar-widget-body outer-top-xs">
-            <div ng-if="bestproductlisting.length == 0"><p><center>No Products found</center></p></div>
-            <!--<div class="owl-carousel best-seller custom-carousel owl-theme outer-top-xs">-->
-            <data-owl-carousel class="owl-carousel best-seller custom-carousel owl-theme outer-top-xs" data-options="{
-    items : 4,
-    navigation : true,
-    itemsDesktopSmall :[979,2],
-    itemsDesktop : [1199,2],
-    slideSpeed : 300,
-    pagination: false,
-    paginationSpeed : 400,
-    navigationText: ['', '']
-}">
-
-              <div owl-carousel-item="item" class="item" ng-repeat="bp in bestproductlisting">
-                <div class="products best-product">
-                  <div class="product" >
-                    <div class="product-micro">
-                      <div class="row product-micro-row">
-                        <div class="col col-xs-5">
-                          <div class="product-image">
-                            <div class="image"> <a href="productdetail/@{{bp.product_id}}"> <img src="@{{ bp.product_image }}"alt=""> </a> </div>
-                            <!-- /.image -->
-
-                          </div>
-                          <!-- /.product-image -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col2 col-xs-7">
-                          <div class="product-info">
-                            <h3 class="name"><a href="productdetail/@{{bp.product_id}}">@{{ bp.product_name | capitalize }}</a></h3>
-                            <div class="rating rateit-small"></div>
-                            <div class="product-price"> <span class="price">@{{ bp.price | currency }} </span> </div>
-                            <!-- /.product-price -->
-
-                          </div>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.product-micro-row -->
-                    </div>
-                    <!-- /.product-micro -->
-
-                  </div>
-                </div>
-              </div>
-              </data-owl-carousel>          
-              </div>
-          <!-- /.sidebar-widget-body -->
-        </div>
-        <!-- /.sidebar-widget -->
+      
         <!-- ============================================== BEST SELLER : END ============================================== -->
 
         <!-- ============================================== BLOG SLIDER ============================================== -->
-        <section class="section latest-blog outer-bottom-vs wow fadeInUp">
-          <h3 class="section-title">latest form blog</h3>
-          <div class="blog-slider-container outer-top-xs">
-            <div class="owl-carousel blog-slider custom-carousel">
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{!! asset('frontend/images/blog-post/post1.jpg') !!}"alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Voluptatem accusantium doloremque laudantium</a></h3>
-                    <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{!! asset('frontend/images/blog-post/post2.jpg') !!}"alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{!! asset('frontend/images/blog-post/post1.jpg') !!}"alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{!! asset('frontend/images/blog-post/post2.jpg') !!}"alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{!! asset('frontend/images/blog-post/post1.jpg') !!}"alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-            </div>
-            <!-- /.owl-carousel -->
-          </div>
-          <!-- /.blog-slider-container -->
-        </section>
-        <!-- /.section -->
+      
         <!-- ============================================== BLOG SLIDER : END ============================================== -->
 
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
         <section class="section wow fadeInUp new-arriavls">
+          <h3 class="section-title">Best Products</h3>
+          <!--<div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">-->
+            <div ng-if="bestproductlisting.length == 0"><p><center>No Products found</center></p></div>
+          <data-owl-carousel class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-options="{
+        items : 5,
+        itemsTablet:[768,2],
+        itemsDesktop : [1199,2],        navigation : true,
+        pagination : false,
+        navigationText: ['', '']
+    }">
+            <div owl-carousel-item="" class="item item-carousel" ng-repeat="na in newproductlisting">
+              <div class="products">
+                <div class="product">
+                  <div class="product-image">
+                    <div class="image"> <a href="productdetail/@{{na.product_id}}"><img  src="@{{ na.product_image }}"alt=""></a> </div>
+                    <!-- /.image -->
+
+                    <div class="tag new"><span>new</span></div>
+                  </div>
+                  <!-- /.product-image -->
+
+                  <div class="product-info text-left">
+                    <h3 class="name"><a href="productdetail/@{{na.product_id}}">@{{ na.product_name | capitalize }}</a></h3>
+                    <div class="rating rateit-small"></div>
+                    <div class="description"></div>
+                    <div class="product-price"> <span class="price"> @{{ na.price | currency }} </span><span ng-if="na.product_offer != 0" class="price-before-discount">@{{ na.offer | currency }}</span> 
+                            <span  ng-if="na.product_offer != 0" class="offer">@{{ na.product_offer | offer}} </span> </div>
+                    <!-- /.product-price -->
+
+                  </div>
+                  <!-- /.product-info -->
+                  <div class="cart clearfix animate-effect">
+                    <div class="action">
+                      <ul class="list-unstyled">
+                        <li class="add-cart-button btn-group">
+                          <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                        </li>
+                        <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                        <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                      </ul>
+                    </div>
+                    <!-- /.action -->
+                  </div>
+                  <!-- /.cart -->
+                </div>
+                <!-- /.product -->
+
+              </div>
+              <!-- /.products -->
+            </div>
+            <!-- /.item -->
+
+            </data-owl-carousel> 
+                     <!-- /.home-owl-carousel -->
+        </section>
+        <!-- /.section -->
+
+
+
+
+      <section class="section wow fadeInUp new-arriavls">
           <h3 class="section-title">New Arrivals</h3>
           <!--<div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">-->
             <div ng-if="newproductlisting.length == 0"><p><center>No Products found</center></p></div>
@@ -454,7 +369,8 @@
                     <h3 class="name"><a href="productdetail/@{{na.product_id}}">@{{ na.product_name | capitalize }}</a></h3>
                     <div class="rating rateit-small"></div>
                     <div class="description"></div>
-                    <div class="product-price"> <span class="price"> @{{ na.price | currency }} </span> <span class="price-before-discount">@{{ na.price | currency }}</span> </div>
+                    <div class="product-price"> <span class="price"> @{{ na.price | currency }} </span> <span ng-if="na.product_offer != 0" class="price-before-discount">@{{ na.offer | currency }}</span> 
+                            <span  ng-if="na.product_offer != 0" class="offer">@{{ na.product_offer | offer}} </span> </div>
                     <!-- /.product-price -->
 
                   </div>

@@ -15,7 +15,7 @@ Route::get('/', function () {
         return View::make('welcome');
 })
 */
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/catproducts', 'HomeController@categoryproductlist')->name('home.catproducts');
 Route::get('/catproducts/{id}', 'HomeController@categoryproductlist')->name('home.catproducts');
 Route::get('/productdetail/{id}', 'HomeController@productdetail')->name('home.productdetail');
@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function()
     Route::post('/login', 'Auth\AdminLoginController@login')->name('auth.admin-login.submit');
     Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
-    Route::get('/', 'AdminController@index')->name('home');
+    Route::get('/', 'AdminController@index')->name('admin');
 });
 
 Route::prefix('products')->group(function()
@@ -61,7 +61,11 @@ Route::prefix('variants')->group(function()
     
 });
 
-Route::get('/cart', 'OrderController@cartview')->name('cart');
+Route::get('/cart', 'UserController@cartview')->name('user.cart');
+Route::get('/checkout', 'UserController@checkout')->name('user.checkout');
+Route::get('/profile', 'UserController@profile')->name('user.profile');
+Route::get('/wishlist', 'UserController@wishlist')->name('user.wishlist');
+
 
 
 Route::resource('products', 'ProductController');

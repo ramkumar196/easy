@@ -10,7 +10,7 @@
 <p class="text title-tag-line"></p>
 <form class="register-form outer-top-xs"  action="{{ route('register') }}" method="POST" role="form">
 	<div class="form-group">
-		<label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
+		<!--<label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>-->
 		<input type="email" placeholder="Email Address" class="form-control unicase-form-control text-input" name="email" value="{{ old('email') }}" required autofocus >
 					@if ($errors->has('email'))
 							<span class="help-block">
@@ -19,7 +19,7 @@
 					@endif
 	  </div>
 	<div class="form-group">
-		<label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
+		<!--<label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>-->
 		{{ csrf_field() }}
 		<input type="text" placeholder="First Name..." class="form-control unicase-form-control text-input" name="name" value="{{ old('name') }}" required autofocus>
 		@if ($errors->has('name'))
@@ -29,8 +29,8 @@
 		@endif
 	</div>
 	<div class="form-group">
-		<label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		<input type="phone" name="phone" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ old('name') }}" >
+		<!--<label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>-->
+		<input type="phone" name="phone" placeholder="Mobile Number" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ old('name') }}" >
 		@if ($errors->has('phone'))
 			<span class="help-block">
 			<strong>{{ $errors->first('phone') }}</strong>
@@ -38,7 +38,7 @@
 		@endif
 	</div>
 	<div class="form-group">
-		<label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
+		<!--<label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>-->
 		<input id="password" type="password" class="form-control unicase-form-control text-input" placeholder="Password" name="password" required >
 					@if ($errors->has('password'))
 							<span class="help-block">
@@ -47,8 +47,8 @@
 					@endif
 	</div>
 	 <div class="form-group">
-		<label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		<input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+		<!--<label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>-->
+		<input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
 	</div>
 	  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 </form>

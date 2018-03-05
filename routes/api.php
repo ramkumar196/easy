@@ -29,8 +29,9 @@ Route::get('/categorydetail/{id}', 'HomeController@categorydetail');
 Route::get('/categoryproduct', 'HomeController@categoryProduct');
 Route::get('/homeproducts/{id}', 'HomeController@homeproducts');
 Route::post('/homeproductsfilter', 'HomeController@productFilter');
+Route::get('/searchitems', 'HomeController@searchItems');
 Route::post('/updateCart', 'OrderController@store');
-Route::post('/cartlist', 'OrderController@cartlist');
+Route::post('/cartlist', 'UserController@cartlist');
 
 Route::delete('cart/{id}', 'OrderController@destroy');
 

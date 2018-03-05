@@ -85,7 +85,7 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
 
     $scope.updateCart=function(data)
     {
-        $scope.product_price += (parseInt(data.product_price) - parseInt(data.product_offer))*$scope.product_qty;
+        //$scope.product_price += (parseInt(data.product_price) - parseInt(data.product_offer))*$scope.product_qty;
         var totalAmt = $scope.product_qty*$scope.product_price;
          let dataArray= {
            'product_id':data.product_id,

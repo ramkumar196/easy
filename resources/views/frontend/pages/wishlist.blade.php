@@ -1,8 +1,6 @@
 @extends('frontend.layouts.default')
 @section('content')
-
-<div class="body-content">
-	<div class="container">
+<div class="container">
 		<div class="my-wishlist-page">
 			<div class="row">
 				<div class="col-md-12 my-wishlist">
@@ -50,7 +48,7 @@
 							<i class="fa fa-star non-rate"></i>
 							<span class="review">( 06 Reviews )</span>
 						</div>
-						<div class="price">s
+						<div class="price">
 							$450.00
 							<span>$900.00</span>
 						</div>
@@ -67,4 +65,6 @@
 	</div>
 </div>			</div><!-- /.row -->
 		</div><!-- /.sigin-in-->
-		@endsection
+	
+</div><!-- /.logo-slider -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div>		@endsection

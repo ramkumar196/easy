@@ -1,4 +1,4 @@
-var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize','checklist-model'])
+var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize','checklist-model','angucomplete'])
 /*["ngAlertify"]*/
 app.directive('loading', ['$http', function ($http) {
     return {
@@ -386,4 +386,15 @@ app.directive('zoom', function($window) {
   };
 
 
+});
+
+  app.filter('offer', function () {
+  return function (item) {
+    return item+"%off";
+  };
+});
+    app.filter('currency', function () {
+  return function (item) {
+    return window.currency+item;
+  };
 });

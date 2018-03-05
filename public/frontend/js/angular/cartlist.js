@@ -37,12 +37,26 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
                 $scope.allcartlisting = res.data;
 
                $scope.allcartlisting = commonServices.parseJsonVariants($scope.allcartlisting);
-
+               
+             $scope.order_subtotal = [];
+            $scope.order_total = []; 
                angular.forEach($scope.allcartlisting, function(v, k) {
+                console.log('lll',v);
+                console.log('lll',v.order_id);
+                console.log('lll',$scope.order_total);
                 $scope.order_qty[v.order_id] = v.quantity;
                 $scope.product_price[v.order_id] = v.subtotal;
-                $scope.order_total[v.order_id] = v.subtotal;
+                $scope.order_total[v.order_id] = v.total;
+                if(v.subtotal != NaN && v.subtotal != NaN)
+                {
+                $scope.grand_subtotal += v.total;
+                $scope.grand_total += parseFloat(v.total);
+
+                
+                }
                 });
+        console.log('lllll',$scope.order_total);
+           
                     //  }
             });
     }
@@ -53,37 +67,41 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
         {
             $scope.order_total[key] = $scope.product_price[key]*$scope.order_qty[key];
             console.log($scope.order_total);
-            $scope.changeGrandTotal();
+
         }
         else
         {
             $scope.order_total[key] = $scope.order_total[key]-$scope.product_price[key];
-            $scope.changeGrandTotal();
+            //$scope.changeGrandTotal();
         }
-        console.log($scope.order_total);
+        $scope.grand_subtotal = commonServices.sumArray($scope.order_total);
+        $scope.grand_total = commonServices.sumArray($scope.order_total);
     }
 
     $scope.changeGrandTotal = function()
     {
         console.log('change',$scope.order_total);
-        $scope.grand_subtotal = commonServices.sumArray($scope.order_total);
-        $scope.grand_total = commonServices.sumArray($scope.order_total);
+        //$scope.grand_subtotal = commonServices.sumArray($scope.order_total);
+        //$scope.grand_total = commonServices.sumArray($scope.order_total);
+         $scope.grand_subtotal += $scope.order_total[$scope.order_total.length-1];
+        $scope.grand_total += $scope.order_total[$scope.order_total.length-1];
 
                 console.log('change',$scope.grand_subtotal);
                 console.log('change',$scope.grand_total);
 
     }
 
-     $scope.changeGrandTotal();
+    // $scope.changeGrandTotal();
 
     $scope.increment = function(key)
     {
-        $scope.changeTotal(key,0);
+                console.log("incre",$scope.order_total);
+
         $scope.order_qty[key]++;
+        $scope.changeTotal(key,0);
     }
     $scope.decrement = function(key)
     {
-        $scope.changeTotal(key,1);
         $scope.order_qty[key]--;
         if($scope.order_qty[key] == 0)
         {
@@ -91,7 +109,7 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
             alertify.alert("Product Quantity must be atleast one");     
             return true;               
         }
-
+        $scope.changeTotal(key,1);
     }
 
     $scope.cartListing();
@@ -102,13 +120,13 @@ function CartListController ($scope, $http, $log, $q,$window,commonServices,aler
     commonServices.deleteCart(order_id).then(function(res){
         console.log(res.data);
                 var d = res.data;
-                if(d.http_code == 404) {
-                  alert('Data not found');
-                  return;
-                }
-                if(d.http_code == 200) {
-                alertify.alert("Order removed from cart list");                    
+                // if(d.http_code == 404) {
+                //   alert('Data not found');
+                //   return;
+                // }
+                if(d == 204) {
                 $scope.cartListing();
+                alertify.alert("Order removed from cart list");                    
                 }
             });
     }

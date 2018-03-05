@@ -9,10 +9,10 @@
 
 
 		  @if (session()->has('userid'))
-            <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
-            <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-            <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li><a href="{{ route('user.profile')}}"><i class="icon fa fa-user"></i>My Account</a></li>
+            <li><a href="{{route('user.wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
+            <li><a href="{{route('user.cart')}}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+            <li><a href="{{route('user.checkout')}}"><i class="icon fa fa-check"></i>Checkout</a></li>
             <li>
              <a class="mb-control" data-box="#mb-signout" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -153,7 +153,7 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class=" dropdown yamm-fw"> <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                <li class=" dropdown yamm-fw"> <a href="{{route('home')}}" class="dropdown-toggle">Home</a> </li>
 				<li class="dropdown yamm mega-menu" ng-repeat="cc in allcategorylisting"> <a href="@{{cc.category_link}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@{{ cc.category_name }}</a>
 				<ul class="dropdown-menu container">
                     <li ng-if="cc.subCategory.length > 0">
@@ -202,7 +202,7 @@
         <li><a href="#"><a href="{{route('home')}}">Home</a></li>
       @for($i = 0; $i <= count(Request::segments()); $i++)
       @if(Request::segment($i))
-      <li class="active"><a href="">{{Request::segment($i)}}</a></li>
+      <li class="active"><a href="">{{ucfirst(Request::segment($i))}}</a></li>
       @endif
       @endfor
       </ul>

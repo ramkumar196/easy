@@ -35,6 +35,7 @@
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-text.js'); !!}"></script>
 
   <script type="text/javascript" src="{!! asset('admin/js/angular/plugins/angular-multiselect.js'); !!}"></script>
+ 
 
 
 

@@ -36,24 +36,7 @@ class OrderController extends Controller
         //
     }
 
-    public function cartlist(Request $request)
-    {
-        if ($request->has('user_id')) {      
-        $user_id=$request->input('user_id');
-        $orders= Order::where('status', 0)->where('user_id',$user_id)->get();
-           // return $orders;
-        return OrderResource::collection($orders);
-        }
-        else
-        {
-            return array();
-        }
-    }
 
-    public function cartview()
-    {
-        return View::make('frontend.pages.cartlist');
-    }
     /**
      * Store a newly created resource in storage.
      *
