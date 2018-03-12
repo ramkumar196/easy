@@ -1,5 +1,7 @@
-var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize','checklist-model','angucomplete'])
+var app = angular.module('easyapp', ['angularUtils.directives.dirPagination','ngAlertify','angular.filter','ngSanitize','checklist-model','MassAutoComplete'])
 /*["ngAlertify"]*/
+
+
 app.directive('loading', ['$http', function ($http) {
     return {
       restrict: 'A',
@@ -163,7 +165,7 @@ app.service('commonServices', function ($http,$q,$filter) {
         },
         this.Wishlist=function(data){
             let deferred = $q.defer();      
-            return $http.get('/api/Wishlist',data).then(function (response) {
+            return $http.post('/api/wishlist',data).then(function (response) {
                 return response;
                 deferred.resolve();
             }, function (response) {
@@ -184,6 +186,26 @@ app.service('commonServices', function ($http,$q,$filter) {
         this.deleteCart=function(data){
             let deferred = $q.defer();      
             return $http.delete('/api/cart/'+data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
+        },
+        this.deleteWishlist=function(data){
+            let deferred = $q.defer();      
+            return $http.delete('/api/wishlist/'+data).then(function (response) {
+                return response;
+                deferred.resolve();
+            }, function (response) {
+                return response;
+                deferred.reject(response);
+            });
+        },
+         this.searchItem=function(data){
+            let deferred = $q.defer();      
+            return $http.post('/api/searchitems',data).then(function (response) {
                 return response;
                 deferred.resolve();
             }, function (response) {
@@ -387,6 +409,18 @@ app.directive('zoom', function($window) {
 
 
 });
+  //   localStorage.setItem('id_token','');
+
+  // app.config(function Config($httpProvider, jwtOptionsProvider) {
+  //   // Please note we're annotating the function so that the $injector works when the file is minified
+  //   jwtOptionsProvider.config({
+  //     tokenGetter: ['commonServices', function(myService) {
+  //       return localStorage.getItem('id_token');
+  //     }]
+  //   });
+
+  //   $httpProvider.interceptors.push('jwtInterceptor');
+  // })
 
   app.filter('offer', function () {
   return function (item) {

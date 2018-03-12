@@ -1,10 +1,10 @@
-function UserProfileController ($scope, $http, $log, $q,category_services,alertify) {
+function UserProfileController ($scope, $http, $log, $q,user_services,alertify) {
     
         $scope.errors='';
         $scope.category='';
-        $scope.user_id = document.getElementById('userid').value;
+        $scope.user_id = USERID;
     
-        category_services.userDetails($scope.user_id).then(function(res){
+        user_services.userDetails($scope.user_id).then(function(res){
             console.log(res.data);
                     var d = res.data;
                     if(d.http_code == 404) {
@@ -12,14 +12,19 @@ function UserProfileController ($scope, $http, $log, $q,category_services,alerti
                       return;
                     }
                     let user_details = res.data;
+
+                    $scope.useremail=user_details.email;
+                    $scope.username=user_details.name;
+                    $scope.userphone=user_details.phone;
                     
         });
+
                 
         
         let update= function (data) {
             let deferred = $q.defer();
             console.log(data);
-            $http.put('/api/updateprofile/'+$scope.userid, data).then(function (response) {
+            $http.put('/api/updateprofile/'+$scope.user_id, data).then(function (response) {
                 deferred.resolve();
             }, function (response) {
                 deferred.reject(response);168
@@ -48,32 +53,30 @@ function UserProfileController ($scope, $http, $log, $q,category_services,alerti
             });
         }*/
     
-        $scope.editcategory = function () {
+        $scope.editprofile = function () {
     
             let attributes = {
                     };
     
             let product = {
-                category_name: $scope.useremail,
-                main_category : $scope.userphone,
-                product_category_id : $scope.userpassword,
-                product_category_id : $scope.userrepassword,
-                product_category_id : $scope.userfirstname,
-                status:'A'
-                //attributes: JSON.stringify(attributes)
+                email: $scope.useremail,
+                phone : $scope.userphone,
+                name : $scope.username,
+                password : $scope.password,
+                password_confirmation : $scope.password_confirmation,
             };
     
             update(product).then(function () {
                 //return retrieveWorkers();
-                alertify.alert("Category updated successfully", function () {
+                alertify.alert("Profile updated successfully", function () {
                     // user clicked "ok"
-                    window.location.href = '/category/manage';
+                    window.location.href = '/profile';
                 });
                 
             }).then(function (data) {
-                alertify.alert("Category updated successfully", function () {
+                alertify.alert("Profile updated successfully", function () {
 				// user clicked "ok"
-				window.location.href = '/category/manage';
+				window.location.href = '/profile';
 			});
             }).catch(function (error) {
                 console.log(error.data.errors);
@@ -87,11 +90,11 @@ function UserProfileController ($scope, $http, $log, $q,category_services,alerti
     
     
     
-    app.controller('EditCategoryController',EditCategoryController);
-    app.service('category_services', function ($http,$q) {
-        this.category_list=function(data){
+    app.controller('UserProfileController',UserProfileController);
+    app.service('user_services', function ($http,$q) {
+        this.userDetails=function(data){
         let deferred = $q.defer();			
-        return $http.get('/api/category?id='+data).then(function (response) {
+        return $http.get('/api/userprofile/'+data).then(function (response) {
             return response;
             deferred.resolve();
         }, function (response) {

@@ -41,7 +41,7 @@
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-owl-carousel.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-checklist.js'); !!}"></script>
    <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-autocomplete.js'); !!}"></script>
-
+   <script type="text/javascript" src="{!! asset('frontend/js/angular/plugins/angular-massautocomplete.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/app.js'); !!}"></script>
   <script type="text/javascript" src="{!! asset('frontend/js/angular/header.js'); !!}"></script>
 

@@ -103,16 +103,17 @@ class HomeController extends Controller
 
     protected function productslist($id=''){
 
+        $products=Product::all();
+
         if($id == 'new')
-        $products=Product::orderBy('created_at', 'asc')->get();
+        $products=Product::orderBy('created_at', 'desc')->take(10)->get();
 
         if($id == 'featured')
-        $products=Product::orderBy('created_at', 'desc')->get();
+        $products=Product::orderBy('created_at', 'desc')->take(10)->get();
 
         if($id == 'best')
-        $products=Product::orderBy('created_at', 'desc')->get();
+        $products=Product::orderBy('created_at', 'desc')->take(10)->get();
 
-        $products=Product::all();
 
         return ProductResource::collection($products);
     }
@@ -173,7 +174,7 @@ class HomeController extends Controller
             $products = Product::where('product_name','LIKE',"%{$keyword}%")
               ->get(); 
         }
-        return $products;
+        return ProductResource::collection($products);
     }
 
 

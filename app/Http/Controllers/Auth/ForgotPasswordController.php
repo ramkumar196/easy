@@ -40,9 +40,15 @@ class ForgotPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('frontend.pages.reset')->with(
+        return view('frontend.pages.email')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }
+
+    public function showLinkRequestForm()
+    {
+        return view('frontend.pages.email');
+    }
+    
 
 }

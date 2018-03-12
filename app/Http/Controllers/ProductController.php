@@ -13,6 +13,8 @@ use DB;
 
 class ProductController extends Controller
 {
+    public $image_width = '1200' ;
+    public $image_height = '1200' ;
     /**
      * Display a listing of the resource.
      *
@@ -73,10 +75,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700); 
+                $img->resizeCanvas($this->image_width, $this->image_height); 
                 $img->save($path);
                 $requestData['product_photo'] = $png_url;
         }
@@ -93,10 +95,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);
+                $img->resizeCanvas($this->image_width, $this->image_height);
                 $img->save($path);
                 $requestData['product_photo_2'] = $png_url;
         }
@@ -112,10 +114,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);                $img->save($path);
+                $img->resizeCanvas($this->image_width, $this->image_height);                $img->save($path);
                 $requestData['product_photo_3'] = $png_url;
         }
         else{
@@ -131,10 +133,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);
+                $img->resizeCanvas($this->image_width, $this->image_height);
                 $img->save($path);
                 $requestData['product_photo_4'] = $png_url;
         }
@@ -222,10 +224,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);
+                $img->resizeCanvas($this->image_width, $this->image_height);
                 $img->save($path);
                 $requestData['product_photo'] = $png_url;
         }
@@ -243,10 +245,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);        
+                $img->resizeCanvas($this->image_width, $this->image_height);        
                 $img->save($path);
                 $requestData['product_photo_2'] = $png_url;
         }
@@ -262,10 +264,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);      
+                $img->resizeCanvas($this->image_width, $this->image_height);      
                 $img->save($path);
                 $requestData['product_photo_3'] = $png_url;
         }
@@ -282,10 +284,10 @@ class ProductController extends Controller
                 $path = public_path() . "/uploads/products/" . $png_url;
                 
                 $img = Image::make($base64_str);
-                $img->resize(700, 700, function ($constraint) {
+                $img->resize($this->image_width, $this->image_height, function ($constraint) {
                 $constraint->aspectRatio();
                 });
-                $img->resizeCanvas(700, 700);
+                $img->resizeCanvas($this->image_width, $this->image_height);
                 $img->save($path);
                 $requestData['product_photo_4'] = $png_url;
         }

@@ -165,6 +165,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
         
         
 
@@ -230,8 +232,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image'=>Intervention\Image\ImageServiceProvider::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+
         
 
     ],
 
 ];
+?>

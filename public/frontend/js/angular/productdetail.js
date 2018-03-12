@@ -115,9 +115,40 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
        
     }
 
+    $scope.updateWish=function(data)
+    {
+        //$scope.product_price += (parseInt(data.product_price) - parseInt(data.product_offer))*$scope.product_qty;
+         let dataArray= {
+           'product_id':data,
+            'user_id':USERID,
+        };
+        if(USERID == '')
+        {
+            $scope.loginAlert();
+        }
+
+        alertify.confirm("Are you sure ?", function () {
+            commonServices.updateWishList(dataArray).then(function(res)
+            {
+                var d = res.data;
+                if(d.http_code == 404) {
+                return;
+                }
+                alertify.alert("Product added to wishlist",function(){
+                window.location.href = '/wishlist';
+                });
+                
+            });
+        }, function() {
+            // user clicked "cancel"
+        });
+       
+    }
+
     $scope.loginAlert =function()
     {
         alertify.alert("Plese login to access");
+        return false;
     }
 
 
@@ -127,31 +158,6 @@ function ProductDetailController ($scope, $http, $log, $q,$window,commonServices
     $scope.decrement = function() {
         $scope.product_qty--;
     };
-
-
-
-
-
-    $scope.updateWishList=function(data)
-    {
-        let dataArray = {'product_id':data.product_id,'user_id':data.user_id};
-
-        alertify.confirm("Are you sure ?", function () {
-            commonServices.updateWishList(dataArray).then(function(res)
-            {
-                var d = res.data;
-                if(d.http_code == 404) {
-                return;
-                }
-                $scope.productList();
-                alertify.alert("Product added to wishlist");
-                
-            });
-        }, function() {
-            // user clicked "cancel"
-        });
-       
-    }
     $scope.variantprice = {};
 
     $scope.productDetail =function(id)

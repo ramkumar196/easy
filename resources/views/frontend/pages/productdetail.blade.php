@@ -9,26 +9,26 @@
             <div class="detail-block">
 				<div class="row  wow fadeInUp">
 
-					     <div class="col-xs-6 col-sm-3 col-md-5 gallery-holder">
+					     <div class="col-xs-6 col-sm-3 col-md-6 gallery-holder">
     <div id="productslider" class="product-item-holder size-big single-product-gallery small-gallery">
 	
         {{--  <div id="owl-single-product">  --}}
 
 		<data-owl-carousel id="owl-single-product" data-options="{
         items:1,
-        itemsTablet:[768,2],
-        itemsDesktop : [1199,1],
 		autoplay:true,
 		autoplayTimeout:200,
 		slideSpeed : 200,
     	navigation : true,
-    	addClassActive:true
+    	addClassActive:true,
+    	navigationText: ['','']
+
 
 
     }"> 
 	<div owl-carousel-item="" class="item" ng-repeat="(k,v) in pd.product_images track by $index" class="single-product-gallery-item" id="slide@{{ key+1 }}">
                     <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="@{{k+1}}" href="#slide@{{k+1}}">
-						 <img ng-if="k == 0" elevatezoom class="img-responsive"     ng-src="@{{v}}"
+						 <img ng-if="k == 0" elevatezoom  class="img-responsive"     ng-src="@{{v}}"
          zoom-image="@{{v}}" />
          				<img ng-if="k != 0" class="img-responsive"     ng-src="@{{v}}"
          zoom-image="@{{v}}" />
@@ -37,66 +37,7 @@
                     </a>
                 </div>
 
-		{{--  <div data-owl-carousel='' ng-repeat="(key, img) in pd.product_images track by $index" class="single-product-gallery-item" id="slide@{{ key+1 }}">
-                <a data-lightbox="image-@{{ key+1 }}" data-title="Gallery" href="@{{ img }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ img }}" />
-                </a>
-            </div>  --}}
 
-
-            {{--  <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide2">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide3">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide4">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide5">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide6">
-                <a data-lightbox="image-1" data-title="Gallery" href="@{{ pd.product_image }}">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="@{{ pd.product_image }}" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide7">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p14.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p14.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide8">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p15.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p15.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->
-
-            <div class="single-product-gallery-item" id="slide9">
-                <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p16.jpg">
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="assets/images/products/p16.jpg" />
-                </a>
-            </div><!-- /.single-product-gallery-item -->  --}}
 
         </data-owl-carousel><!-- /.single-product-slider -->
 
@@ -122,7 +63,7 @@
 
     </div><!-- /.single-product-gallery -->
 </div><!-- /.gallery-holder -->
-					<div class='col-sm-6 col-md-7 product-info-block'>
+					<div class='col-sm-6 col-md-6 product-info-block'>
 						<div class="product-info">
 							<h1 class="name">@{{ pd.product_name | capitalize }}</h1>
 
@@ -184,7 +125,7 @@
 									</div>
 
 									<div class="col-sm-6">
-										<div class="favorite-button m-t-10">
+										<div ng-click="updateWish(pd.product_id)" class="favorite-button m-t-10">
 											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
 											    <i class="fa fa-heart"></i>
 											</a>
@@ -395,7 +336,7 @@
 <section class="section featured-product wow fadeInUp">
 	<h3 class="section-title">upsell products</h3>
 	<data-owl-carousel class="owl-carousel upsell-product home-owl-carousel custom-carousel owl-theme outer-top-xs" data-options="{
-        items : 4,
+        items : 5,
         itemsTablet:[768,2],
         itemsDesktop : [1199,2],
         navigation : true,
@@ -422,9 +363,8 @@
 			<div class="description"></div>
 
 			<div class="product-price">
-				<span class="price">
-				@{{ fp.price | currency }}				</span>
-										     <span class="price-before-discount">@{{ fp.price | currency }}</span>
+				<div class="product-price"> <span class="price"> @{{ fp.price | currency }} </span> <span ng-if="fp.product_offer != 0" class="price-before-discount">@{{ fp.offer | currency }}</span> 
+                            <span  ng-if="fp.product_offer != 0" class="offer">@{{ fp.product_offer | offer}} </span> </div>
 
 			</div><!-- /.product-price -->
 
@@ -441,7 +381,7 @@
 						</li>
 
 		                <li class="lnk wishlist">
-							<a class="add-to-cart" href="detail.html" title="Wishlist">
+							<a class="add-to-cart" href="@{{fp.product_link}}" title="Wishlist">
 								 <i class="icon fa fa-heart"></i>
 							</a>
 						</li>

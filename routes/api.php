@@ -18,22 +18,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'Auth\LoginController@login');
-
+//Route::group(['middleware' => 'jwt.auth'], function () {
 Route::get('/categorylist', 'HomeController@categorylist');
 Route::get('/productslist', 'HomeController@productslist');
 Route::get('/productslist/{id}', 'HomeController@productslist');
 Route::get('/categorydetail/{id}', 'HomeController@categorydetail');
 
-
-
 Route::get('/categoryproduct', 'HomeController@categoryProduct');
 Route::get('/homeproducts/{id}', 'HomeController@homeproducts');
 Route::post('/homeproductsfilter', 'HomeController@productFilter');
-Route::get('/searchitems', 'HomeController@searchItems');
+Route::post('/searchitems', 'HomeController@searchItems');
 Route::post('/updateCart', 'OrderController@store');
+Route::post('/updateWishList', 'WishlistController@store');
 Route::post('/cartlist', 'UserController@cartlist');
+Route::post('/wishlist', 'UserController@wishlisting');
 
 Route::delete('cart/{id}', 'OrderController@destroy');
+Route::delete('wishlist/{id}', 'WishlistController@destroy');
+
+
+Route::get('userprofile/{id}', 'UserController@userProfile');
+Route::put('updateprofile/{id}', 'UserController@update');
+//});
+
 
 Route::get('products', 'ProductController@index');
 Route::get('products/{id}', 'ProductController@show');
@@ -57,4 +64,8 @@ Route::post('variants', 'VariantsController@store');
 Route::put('variants/{id}', 'VariantsController@update');
 Route::delete('variants/{id}', 'VariantsController@delete');
 Route::put('variants/status/{id}', 'VariantsController@updateStatus');
+
+
+
+
 

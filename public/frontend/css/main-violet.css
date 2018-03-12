@@ -1222,7 +1222,6 @@ header{background:#fff}
   margin: 8px 0 0;
   background:#fff;
   border-radius:2px;
-  border:2px #e5e5e5 solid
 }
 .main-header .top-search-holder .search-area .search-field {
   border: medium none;
@@ -3814,7 +3813,7 @@ age-container #owl-main .owl-next {
 
 .single-product .product-info-block .name {margin-top:0px; font-weight:bold; letter-spacing:-1px}
 
-.single-product .single-product-gallery {padding-bottom:30px}
+.single-product .single-product-gallery {padding-bottom:30px;}
 
 .single-product .favorite-button .btn-primary {background:#ddd}
 
@@ -5744,7 +5743,7 @@ border:1px #e5e5e5 solid; border-bottom:2px #e5e5e5 solid;
 }
 
 .body-content .my-wishlist-page img {width:100%}
-.body-content .my-wishlist-page .my-wishlist table tbody tr:nth-child(even) {
+.body-content .my-wishlist-page .my-wishlist table tbody tr {
   border-top: 1px solid #ddd;
 }
 .body-content .my-wishlist-page .my-wishlist table tbody .product-name {
@@ -6301,83 +6300,46 @@ z-index:10000
   transform: scale(1.05);
 }
 
-.form-control {
-    outline: 0;
-    border-color: #ECECEC;
-    border-style: solid;
-    border-width: 1px;
-    width: 95%;
-    background-color: #ffffff;
-    padding: 6px;
-    border-radius: 2px;
-    margin-bottom: 5px;
-    font-size: 14px;
+
+.ac-container {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 999;
 }
-
-.angucomplete-holder {
-    position: relative;
+.ac-container .ac-menu {
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  background-color: white;
+  box-shadow: 0 3px 7px 0px rgba(0, 0, 0, 0.15);
+  margin: 0;
 }
-
-.angucomplete-dropdown {
-    border-color: #ececec;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 2px;
-    width: 250px;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 9999;
-    position: absolute;
-    /*top: 32px;
-    left: 0px;
-    */
-    margin-top: -6px;
-    background-color: #ffffff;
+.ac-container .ac-menu .ac-menu-item {
+  border-bottom: 1px dotted #ccc;
+  line-height: 35px;
+  margin: 0;
 }
-
-.angucomplete-searching {
-    color: #acacac;
-    font-size: 14px;
+.ac-container .ac-menu .ac-menu-item:last-child {
+  border-bottom: 0;
 }
-
-.angucomplete-description {
-    font-size: 14px;
+.ac-container .ac-menu .ac-menu-item:hover {
+  background-color: #e0eaff;
 }
-
-.angucomplete-row {
-    padding: 5px;
-    color: #000000;
-    margin-bottom: 4px;
-
+.ac-container .ac-menu a {
+  padding-left: 5px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
-
-.angucomplete-selected-row, .angucomplete-row:hover {
-    background-color: lightblue;
-    color: #ffffff;
-}
-
-.angucomplete-image-holder {
-    padding-top: 2px;
-    float: left;
-    margin-right: 10px;
-    margin-left: 5px;
-}
-
-.angucomplete-image {
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
-    border-color: #ececec;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.angucomplete-image-default {
-    /* Add your own default image here
-     background-image: url('/assets/default.png');
-    */
-    background-position: center;
-    background-size: contain;
-    height: 34px;
-    width: 34px;
+.ac-container .ac-menu .ac-state-focus {
+  outline: none;
+  background-color: #e0eaff;
 }

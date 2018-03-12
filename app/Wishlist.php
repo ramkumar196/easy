@@ -23,8 +23,8 @@ class Wishlist extends Model
      protected $hidden = [
     ];
 
-    // public function products()
-    // {
-    // 	return $this->belongsTo('App\Product');
-    // }
+    public function products()
+     {
+         return $this->belongsTo('App\Product','product_id');
+     }
 }

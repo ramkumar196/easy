@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Wishlist;
+
 use App\Http\Resources\Wishlists as WishlistResource;
 
 
@@ -50,11 +52,15 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $requestData = $request->all();
+         $requestData['status']=1;
+
+        $res = Wishlist::create($requestData);
+        return ['message' => 'Product added to your wishlist!'];
     }
 
     /**
-     * Display the specified resource.
+     * D isplay the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -74,16 +74,13 @@
           <div class="search-area">
             <form>
               <div class="control-group">
-                <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu" >
-                      <li role="presentation" ng-repeat="cc in allcategorylisting" ><a role="menuitem" tabindex="-1" href="category.html">- @{{ cc.category_name }}</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="#" ></a> </div>
+              <div mass-autocomplete >
+        <input class="form-control"  placeholder="Search Products" ng-model="dirty.value"
+               mass-autocomplete-item="autocomplete_options">
+      </div>
+      </div>
             </form>
+
           </div>
           <!-- /.search-area -->
           <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>

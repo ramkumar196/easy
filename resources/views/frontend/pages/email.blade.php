@@ -1,40 +1,46 @@
 @extends('frontend.layouts.default')
 @section('content')
-<!-- breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Reset Password</li>
-			</ol>
-		</div>
-	</div>
-	@if (session('status'))
-			<div class="alert alert-success">
-					{{ session('status') }}
-			</div>
-	@endif
-<!-- //breadcrumbs -->
-<!-- login -->
-	<div class="login">
-		<div class="container">
-			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Reset Password</h3>
-			<p class="est animated wow zoomIn" data-wow-delay=".5s">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-				deserunt mollit anim id est laborum.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
 
-			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form  method="POST" action="{{ route('password.email') }}">
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-					<input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}" required autofocus >
-					@if ($errors->has('email'))
-							<span class="help-block">
-									<strong>{{ $errors->first('email') }}</strong>
-							</span>
-					@endif
-					<input type="submit" value="Send Password Reset Link">
-				</form>
-			</div>
-		</div>
-	</div>
-<!-- //login -->
+                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Send Password Reset Link
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
